@@ -44,23 +44,59 @@ function populateGrids(){
   var aContent = $.extend(true, [], aContentData);
   var oUserData = sessionStorage.userData;
   var oRuleData = $.extend(true,{},oRules);
+  var iGridSize = sessionData.gridSize[0]*sessionData.gridSize[1];
+  var aContentToUse = [];
+
+  targetGroup:
   for(sTargetGroupType in oRuleData.targetGroup){
-    if(oRuleData.targetGroup[sTargetGroupType] > 0){
+    while (oRuleData.targetGroup[sTargetGroupType] > 0) {
       var oContent = getContentWithTargetGroup(aContent, sTargetGroupType);
-      if(oContent){
+      if (oContent) {
         oRuleData.targetGroup[sTargetGroupType]--;
         var aRegions = oContent["Region"];
-        for(var iRegionIndex = 0 ; iRegionIndex < aRegions.length ; iRegionIndex++){
+        for (var iRegionIndex = 0; iRegionIndex < aRegions.length; iRegionIndex++) {
           var sRegionName = aRegions[iRegionIndex].name;
-          if(oRuleData.region[sRegionName] > 0){
+          if (oRuleData.region[sRegionName] > 0) {
             oRuleData.region[sRegionName]--;
           }
         }
+        aContentToUse.push(oContent);
+        if(aContentToUse.length >= iGridSize){
+          break targetGroup;
+        }
+      } else {
+        break;
+      }
+    }
+  }
+  region:
+  for(sRegionType in oRuleData.region){
+    while(oRuleData.region[sRegionType] > 0){
+      console.log(sRegionType);
+      var oContent = getContentForRegion(aContent, sRegionType);
+      if (oContent) {
+        oRuleData.region[sRegionType]--;
+        aContentToUse.push(oContent);
+        if(aContentToUse.length >= iGridSize){
+          break region;
+        }
+      } else{
+        break;
       }
     }
   }
   console.log(oRuleData);
+  console.log(aContentToUse.length);
 
+  
+
+
+
+  var iContentIndex = 0;
+  while(aContentToUse.length < iGridSize && iContentIndex < aContent.length){
+    aContentToUse.push(aContent[iContentIndex]);
+  }
+  console.log(aContentToUse.length);
 }
 
 /**
@@ -83,6 +119,17 @@ function getContentWithTargetGroup(aClonedContent, sTargetGroup){
   return false;
 }
 
-function getContentForRegion(aContent, sRegion){
-
+function getContentForRegion(aClonedContent, sRegion){
+  for(var iContentIndex = 0 ; iContentIndex < aClonedContent.length ; iContentIndex++){
+    var oContent = aClonedContent[iContentIndex];
+    var aContentRegions = oContent["Region"];
+    for(var iTargetGroupIndex=0 ; iTargetGroupIndex < aContentRegions.length ; iTargetGroupIndex++){
+      var oRegion = aContentRegions[iTargetGroupIndex];
+      if(oRegion.name == sRegion && oRegion.relevance > 0){
+        aClonedContent.splice(iContentIndex,1);
+        return oContent;
+      }
+    }
+  }
+  return false;
 }
