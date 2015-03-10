@@ -1,27 +1,35 @@
+var oUserData = {};
+
+if (sessionStorage.userData) {
+  oUserData = JSON.parse(sessionStorage.userData);
+} else {
+  oUserData = oDefaultUserSessionData;
+}
+
+sessionData = {
+  userData: oUserData
+};
+
+$(window).unload(function () {
+  sessionStorage.userData = JSON.stringify(sessionData.userData);
+});
 
 function SessionStorageHandler () {
 
-  var oSessionStorage = window.sessionStorage;
+  var oSessionStorage = sessionData;
 
   this.getSessionData = function () {
-    if (!oSessionStorage.getItem('dataModel')) {
-      oSessionStorage.setItem('dataModel', JSON.stringify(oDefaultUserSessionData));
-    }
 
-    return JSON.parse(oSessionStorage.getItem('dataModel'));
+    return oSessionStorage;
   }
 
   this.setDataToSession = function (sKey, oData) {
-    oSessionStorage.setItem(sKey, JSON.stringify(oData));
+    oSessionStorage[sKey] = oData;
   }
 
   this.getDataFromSession = function (sKey) {
 
-    return JSON.parse(oSessionStorage.getItem(sKey));
-  }
-
-  this.clearSessionData = function () {
-    oSessionStorage.clear();
+    return oSessionStorage[sKey];
   }
 
 }
