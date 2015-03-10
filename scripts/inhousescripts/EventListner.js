@@ -4,5 +4,5 @@ $(document).ready(function () {
 });
 
 function attachEventOnElement () {
-  $('body').on('.grid-cell', 'click', gridCellClicked);
+  $('body').on('click', '.grid-cell', gridCellClicked);
 }
