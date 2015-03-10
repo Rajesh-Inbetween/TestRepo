@@ -108,7 +108,7 @@ function populateGrids(){
   // Applying content as per User Data.
   for (var sTargetGroupName in oUserData) {
     var sScaleCount = getScaleForRelevance(oUserData[sTargetGroupName].relevance);
-    applyAllContentWithTarget(sTargetGroupName, sScaleCount, aContent, aContentToUse);
+    addContentAccordingToUserRelevance(sTargetGroupName, sScaleCount, aContent, aContentToUse);
   }
 
   var iContentIndex = 0;
@@ -124,7 +124,7 @@ function populateGrids(){
   addProductDetailsToCells(aContentToUse);
 }
 
-function applyAllContentWithTarget (sTargetGroupName, sScaleCount, aClonedContent, aContentToUse) {
+function addContentAccordingToUserRelevance (sTargetGroupName, sScaleCount, aClonedContent, aContentToUse) {
   var iLoopLength;
 
   switch(sScaleCount){
