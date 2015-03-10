@@ -1,0 +1,13 @@
+/bin/
+/build/
+/.gradle
+/.settings
+.classpath
+.project
+.springBeans
+.idea
+*.iml
+*.ipr
+*.iws
+src/dynamicJava
+src/generatedClasses
