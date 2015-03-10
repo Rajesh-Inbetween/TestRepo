@@ -41,10 +41,12 @@ function getContentById(id){
 
 function populateGrids(){
 
-  var aContent = aContentData;
+  var aContent = $.extend(false, [], aContentData);
 
   var oUserData = sessionStorage.userData;
 
-  
+  var oRuleData = oRules;
+
+
 
 }
