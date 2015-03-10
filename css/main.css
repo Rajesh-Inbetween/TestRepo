@@ -1,0 +1,15 @@
+
+.row{
+    height: 100px;
+    margin-top: 10px;
+}
+
+.col{
+    height: 100px;
+    width: 100px;
+    margin: 5px;
+    float: left;
+    overflow: hidden;
+    border: 1px solid;
+
+}
