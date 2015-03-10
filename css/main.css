@@ -1,15 +1,41 @@
 
+.grid {
+    display: table
+}
+
 .row{
     height: 100px;
     margin-top: 10px;
+    display: table-row;
+    padding: 5px;
 }
 
 .col{
     height: 100px;
     width: 100px;
-    margin: 5px;
-    float: left;
-    overflow: hidden;
     border: 1px solid;
+    display: table-cell;
+    padding: 5px;
+}
 
+.row:first-child .col:first-child {
+    padding: 5px 0px 0px 5px;
+    background-color: antiquewhite;
+
+}
+
+.row:first-child .col:first-child {
+    padding: 5px 5px 0px 0px;
+}
+
+.row:last-child .col:last-child {
+    padding: 0px 5px 5px 0px;
+}
+
+.row:last-child .col:first-child {
+    padding: 0px 0px 5px 5px;
+}
+
+#temp {
+    display: none;
 }
