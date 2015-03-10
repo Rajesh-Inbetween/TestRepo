@@ -1,9 +1,21 @@
 $(document).ready(function () {
-  createMustacheTemplate();
+  //getMustacheTemplateDom(oData);
+  addProductDetailsToCells();
 });
 
-createMustacheTemplate = function () {
-  console.log("********** creating mustache template");
+
+addProductDetailsToCell = function(rowCount, cellCount, oData){
+  var $div = $("#temp");
+  var $row = $(".grid .grid-row ").eq(rowCount);
+  var $column = $row.find('.grid-cell').eq(cellCount);
+
+  $div.load("MustacheTemplate.html", function(){
+    var output = Mustache.to_html($div.html(), oData);
+    $column.html(output);
+  });
+}
+
+addProductDetailsToCells = function () {
   var aData = [{
                  "label": "product1",
                  "description": "description",
@@ -27,9 +39,15 @@ createMustacheTemplate = function () {
   $div.load("MustacheTemplate.html", function () {
     for (var i = 0; i < aData.length; i++) {
       var output = Mustache.to_html($div.html(), aData[i]);
-      $(".grid .row .col").eq(i).html(output);
+      $(".grid .grid-row .grid-cell").eq(i).html(output);
 
     }
   });
 
 };
+
+getMustacheTemplateDom = function(oData){
+  var $div = $("#temp");
+  $div.load("MustacheTemplate.html");
+  return  Mustache.to_html($div.html(), oData);
+}

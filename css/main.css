@@ -3,14 +3,14 @@
     display: table
 }
 
-.row{
+.grid-row{
     height: 100px;
     margin-top: 10px;
     display: table-row;
     padding: 5px;
 }
 
-.col{
+.grid-cell{
     height: 100px;
     width: 100px;
     border: 1px solid;
@@ -18,21 +18,21 @@
     padding: 5px;
 }
 
-.row:first-child .col:first-child {
+.grid-row:first-child .grid-cell:first-child {
     padding: 5px 0px 0px 5px;
     background-color: antiquewhite;
 
 }
 
-.row:first-child .col:first-child {
+.grid-row:first-child .grid-cell:first-child {
     padding: 5px 5px 0px 0px;
 }
 
-.row:last-child .col:last-child {
+.grid-row:last-child .grid-cell:last-child {
     padding: 0px 5px 5px 0px;
 }
 
-.row:last-child .col:first-child {
+.grid-row:last-child .grid-cell:first-child {
     padding: 0px 0px 5px 5px;
 }
 
