@@ -271,5 +271,95 @@ var aContentData = [
     "Region":[
       {"name":"East","relevance":100}
     ]
+  },
+  {
+    "label": "I70, DA10, S35, CT15, PR-57, FA50",
+    "id": "6",
+    "Target Group": [
+      {
+        "name": "Internationality",
+        "relevance": 70,
+        "strength":"indicator"
+      },
+      {
+        "name": "Digital Affinity",
+        "relevance": 10,
+        "strength":"weak"
+      },
+      {
+        "name": "Family Status",
+        "relevance": 0,
+        "strength":"weak"
+      },
+      {
+        "name": "Socioeconomics",
+        "relevance": 35,
+        "strength":"strong"
+      },
+      {
+        "name": "Cultural Type",
+        "relevance": 15,
+        "strength":"strong"
+      },
+      {
+        "name": "Philantropy & Responsibility",
+        "relevance": -57,
+        "strength":"indicator"
+      },
+      {
+        "name": "Financial Affinity",
+        "relevance": 50,
+        "strength":"weak"
+      }
+    ],
+    "image": "../images/Product_6.jpg",
+    "Region":[
+      {"name":"East","relevance":100}
+    ]
+  },
+  {
+    "label": "New",
+    "id": "6",
+    "Target Group": [
+      {
+        "name": "Internationality",
+        "relevance": 0,
+        "strength":"indicator"
+      },
+      {
+        "name": "Digital Affinity",
+        "relevance": 0,
+        "strength":"weak"
+      },
+      {
+        "name": "Family Status",
+        "relevance": 0,
+        "strength":"weak"
+      },
+      {
+        "name": "Socioeconomics",
+        "relevance": 0,
+        "strength":"strong"
+      },
+      {
+        "name": "Cultural Type",
+        "relevance": 0,
+        "strength":"strong"
+      },
+      {
+        "name": "Philantropy & Responsibility",
+        "relevance": 0,
+        "strength":"indicator"
+      },
+      {
+        "name": "Financial Affinity",
+        "relevance": 0,
+        "strength":"weak"
+      }
+    ],
+    "image": "../images/Product_6.jpg",
+    "Region":[
+      {"name":"East","relevance":100}
+    ]
   }
 ];

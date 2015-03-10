@@ -1,6 +1,6 @@
 var oRules = {
   "targetGroup":{
-    "Financial Affinity":0,
+    "Financial Affinity":2,
     "Internationality":0,
     "Digital Affinity":0,
     "Socioeconomic Group":0,
@@ -11,6 +11,6 @@ var oRules = {
     "North":0,
     "South":0,
     "East":0,
-    "West":0
+    "West":1
   }
 };

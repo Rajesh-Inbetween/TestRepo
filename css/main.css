@@ -15,6 +15,7 @@
     width: 100px;
     display: table-cell;
     padding: 5px;
+    border: 1px solid;
 }
 
 .grid-row:first-child .grid-cell:first-child {

@@ -126,7 +126,7 @@ function populateGrids(){
 
 function addContentAccordingToUserRelevance (sTargetGroupName, sScaleCount, aClonedContent, aContentToUse) {
   var iLoopLength;
-
+  console.log(sTargetGroupName + " : " + sScaleCount);
   switch(sScaleCount){
     case RELEVANCE_ALL:
       iLoopLength = aClonedContent.length;
@@ -152,6 +152,7 @@ function addContentAccordingToUserRelevance (sTargetGroupName, sScaleCount, aClo
     var oContent = getContentWithTargetGroup(aClonedContent, sTargetGroupName);
     if (oContent) {
       aContentToUse.push(oContent);
+      console.log(oContent.label);
     } else {
       break;
     }
