@@ -5,81 +5,163 @@ var oProductData = [
     "Target Group": [
       {
         "name": "Internationality",
-        "relevance": 100,
-        "strength":"absolute"
-      },
-      {
-        "name": "Digital Affinity",
-        "relevance": 100,
+        "relevance": 0,
         "strength":"strong"
       },
       {
-        "name": "Family Status",
-        "relevance": 100,
+        "name": "Digital Affinity",
+        "relevance": 50,
         "strength":"weak"
       },
       {
+        "name": "Family Status",
+        "relevance": 0,
+        "strength":"strong"
+      },
+      {
         "name": "Socioeconomics",
-        "relevance": 100,
+        "relevance": 20,
         "strength":"indicator"
       },
       {
         "name": "Cultural Type",
-        "relevance": 100,
+        "relevance": 0,
         "strength":"strong"
       },
       {
         "name": "Philantropy & Responsibility",
-        "relevance": 100,
+        "relevance": 0,
         "strength":"weak"
       },
       {
         "name": "Financial Affinity",
-        "relevance": 100,
-        "strength":"absolute"
+        "relevance": 0,
+        "strength":"strong"
       }
     ],
     "Region":["north","south"]
   },
   {
-    "label": "Investment ABC",
-    "id": "1",
+    "label": "Children Investment",
+    "id": "2",
     "Tags": [
       {
         "name": "Internationality",
-        "relevance": 100,
-        "strength":"absolute"
+        "relevance": 0,
+        "strength":"strong"
       },
       {
         "name": "Digital Affinity",
-        "relevance": 100,
-        "strength":"strong"
+        "relevance": 50,
+        "strength":"weak"
       },
       {
         "name": "Family Status",
         "relevance": 100,
-        "strength":"weak"
+        "strength":"strong"
       },
       {
         "name": "Socioeconomics",
-        "relevance": 100,
+        "relevance": 50,
         "strength":"indicator"
       },
       {
         "name": "Cultural Type",
-        "relevance": 100,
+        "relevance": 50,
         "strength":"strong"
       },
       {
         "name": "Philantropy & Responsibility",
-        "relevance": 100,
-        "strength":"weak"
+        "relevance": 60,
+        "strength":"strong"
       },
       {
         "name": "Financial Affinity",
+        "relevance": 80,
+        "strength":"strong"
+      }
+    ]
+  },
+  {
+    "label": "Foreign Electronic Investment Article",
+    "id": "3",
+    "Tags": [
+      {
+        "name": "Internationality",
+        "relevance": 100,
+        "strength":"strong"
+      },
+      {
+        "name": "Digital Affinity",
         "relevance": 100,
         "strength":"absolute"
+      },
+      {
+        "name": "Family Status",
+        "relevance": 0,
+        "strength":"weak"
+      },
+      {
+        "name": "Socioeconomics",
+        "relevance": 50,
+        "strength":"indicator"
+      },
+      {
+        "name": "Cultural Type",
+        "relevance": 50,
+        "strength":"strong"
+      },
+      {
+        "name": "Philantropy & Responsibility",
+        "relevance": 60,
+        "strength":"strong"
+      },
+      {
+        "name": "Financial Affinity",
+        "relevance": 80,
+        "strength":"strong"
+      }
+    ]
+  },
+  {
+    "label": "How to invest in stocks article",
+    "id": "4",
+    "Tags": [
+      {
+        "name": "Internationality",
+        "relevance": 30,
+        "strength":"weak"
+      },
+      {
+        "name": "Digital Affinity",
+        "relevance": 50,
+        "strength":"weak"
+      },
+      {
+        "name": "Family Status",
+        "relevance": 0,
+        "strength":"weak"
+      },
+      {
+        "name": "Socioeconomics",
+        "relevance": 80,
+        "strength":"strong"
+      },
+      {
+        "name": "Cultural Type",
+        "relevance": 50,
+        "strength":"weak"
+      },
+      {
+        "name": "Philantropy & Responsibility",
+        "relevance": 60,
+        "strength":"strong"
+      },
+      {
+        "name": "Financial Affinity",
+        "relevance": 90,
+        "strength":"strong"
       }
     ]
   }
-]
+];
