@@ -1,4 +1,4 @@
-var oProductData = [
+var aContentData = [
   {
     "label": "Investment ABC",
     "id": "1",
@@ -47,7 +47,7 @@ var oProductData = [
     "Tags": [
       {
         "name": "Internationality",
-        "relevance": 0,
+        "relevance": -80,
         "strength":"strong"
       },
       {
@@ -113,7 +113,7 @@ var oProductData = [
       },
       {
         "name": "Philantropy & Responsibility",
-        "relevance": 60,
+        "relevance": -50,
         "strength":"strong"
       },
       {
@@ -154,7 +154,7 @@ var oProductData = [
       },
       {
         "name": "Philantropy & Responsibility",
-        "relevance": 60,
+        "relevance": -20,
         "strength":"strong"
       },
       {
@@ -171,7 +171,7 @@ var oProductData = [
       {
         "name": "Internationality",
         "relevance": 100,
-        "strength":"strong"
+        "strength":"absolute"
       },
       {
         "name": "Digital Affinity",
@@ -195,8 +195,8 @@ var oProductData = [
       },
       {
         "name": "Philantropy & Responsibility",
-        "relevance": 60,
-        "strength":"indicator"
+        "relevance": -100,
+        "strength":"weak"
       },
       {
         "name": "Financial Affinity",

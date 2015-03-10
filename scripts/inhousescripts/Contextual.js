@@ -26,3 +26,25 @@ function computeUserRelevance(productDataTargetGroup, userTargetGroup){
   //userTargetGroup.relevance = computedRelevance;
   return computedRelevance;
 }
+
+function getContentById(id){
+  var aContent = aContentData;
+  for(var iContentIndex = 0 ; iContentIndex < aContentData.length ; iContentIndex++){
+    var oContent = aContent[iContentIndex];
+    if(oContent.id == id){
+      return oContent;
+    }
+  }
+  console.error("Content Not Found");
+  return false;
+}
+
+function populateGrids(){
+
+  var aContent = aContentData;
+
+  var oUserData = oDefaultUserSessionData;
+
+  
+
+}
