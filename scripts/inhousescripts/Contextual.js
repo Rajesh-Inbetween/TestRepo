@@ -1,3 +1,8 @@
+const RELEVANCE_ALL = 'all';
+const RELEVANCE_ONE = 'one';
+const RELEVANCE_TWO = 'two';
+const RELEVANCE_THREE = 'three';
+
 function setUserRelevance (oContent) {
   var aContentTargetGroups = oContent["Target Group"];
 
@@ -7,6 +12,8 @@ function setUserRelevance (oContent) {
     var iUpdatedUserDataRelevance = computeUserRelevance(oContentTargetGroup, oUserData);
     oUserData.relevance = iUpdatedUserDataRelevance;
   }
+
+  populateGrids();
 }
 
 function computeUserRelevance(productDataTargetGroup, userTargetGroup){
@@ -53,11 +60,12 @@ function getContentById(iContentid){
 function populateGrids(){
 
   var aContent = $.extend(true, [], aContentData);
-  var oUserData = sessionStorage.userData;
+  var oUserData = $.extend(true, {}, sessionData.userData);
   var oRuleData = $.extend(true,{},oRules);
   var iGridSize = sessionData.gridSize[0]*sessionData.gridSize[1];
   var aContentToUse = [];
 
+  //Applying content as per rule set.
   targetGroup:
   for(sTargetGroupType in oRuleData.targetGroup){
     while (oRuleData.targetGroup[sTargetGroupType] > 0) {
@@ -96,6 +104,13 @@ function populateGrids(){
       }
     }
   }
+
+  // Applying content as per User Data.
+  for (var sTargetGroupName in oUserData) {
+    var sScaleCount = getScaleForRelevance(oUserData[sTargetGroupName].relevance);
+    applyAllContentWithTarget(sTargetGroupName, sScaleCount, aContent, aContentToUse);
+  }
+
   var iContentIndex = 0;
   while(aContentToUse.length < iGridSize && iContentIndex < aContent.length){
     aContentToUse.push(aContent[iContentIndex]);
@@ -109,6 +124,91 @@ function populateGrids(){
   addProductDetailsToCells(aContentToUse);
 }
 
+function applyAllContentWithTarget (sTargetGroupName, sScaleCount, aClonedContent, aContentToUse) {
+  var iLoopLength;
+
+  switch(sScaleCount){
+    case RELEVANCE_ALL:
+      iLoopLength = aClonedContent.length;
+      break;
+
+    case RELEVANCE_ONE:
+      iLoopLength = 1;
+      break;
+
+    case RELEVANCE_TWO:
+      iLoopLength = 2;
+      break;
+
+    case RELEVANCE_THREE:
+      iLoopLength = 3;
+      break;
+
+    default :
+      iLoopLength = 0;
+  }
+
+  for (var iCount = 0; iCount < iLoopLength; iCount++) {
+    var oContent = getContentWithTargetGroup(aClonedContent, sTargetGroupName);
+    if (oContent) {
+      aContentToUse.push(oContent);
+    } else {
+      break;
+    }
+  }
+  /*if (sScaleCount == RELEVANCE_ALL) {
+    var oContent;
+    do {
+      oContent = getContentWithTargetGroup(aClonedContent, sTargetGroupName);
+      if (oContent) {
+        aContentToUse.push(oContent);
+      }
+    } while (oContent);
+  } else if (sScaleCount == RELEVANCE_ONE) {
+    var oContent = getContentWithTargetGroup(aClonedContent, sTargetGroupName);
+    if (oContent) {
+      aContentToUse.push(oContent);
+    }
+  } else if (sScaleCount == RELEVANCE_TWO) {
+    for (var iCount = 0; iCount < 2; iCount++) {
+      var oContent = getContentWithTargetGroup(aClonedContent, sTargetGroupName);
+      if (oContent) {
+        aContentToUse.push(oContent);
+      } else {
+        break;
+      }
+    }
+  } else if (sScaleCount == RELEVANCE_THREE) {
+    for (var iCount = 0; iCount < 3; iCount++) {
+      var oContent = getContentWithTargetGroup(aClonedContent, sTargetGroupName);
+      if (oContent) {
+        aContentToUse.push(oContent);
+      } else {
+        break;
+      }
+    }
+  }*/
+}
+
+function getScaleForRelevance (fRelevance) {
+  if (fRelevance == 100) {
+
+    return RELEVANCE_ALL;
+  } else if (fRelevance > 10 && fRelevance < 40) {
+
+    return RELEVANCE_ONE;
+  } else if (fRelevance > 40 && fRelevance < 80) {
+
+    return RELEVANCE_TWO;
+  } else if (fRelevance > 80 && fRelevance < 100) {
+
+    return RELEVANCE_THREE;
+  } else {
+
+    return false;
+  }
+}
+
 /**
  *
  * @param aClonedContent - Content that has been Cloned!!!
@@ -117,7 +217,6 @@ function populateGrids(){
 function getContentWithTargetGroup(aClonedContent, sTargetGroup){
   for(var iContentIndex = 0 ; iContentIndex < aClonedContent.length ; iContentIndex++){
     var oContent = aClonedContent[iContentIndex];
-    oContent.label = "RandomCrap " + oContent.label;
     var aContentTargetGroups = oContent["Target Group"];
     for(var iTargetGroupIndex=0 ; iTargetGroupIndex < aContentTargetGroups.length ; iTargetGroupIndex++){
       var oTargetGroup = aContentTargetGroups[iTargetGroupIndex];
