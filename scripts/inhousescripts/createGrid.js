@@ -1,6 +1,7 @@
 $(document).ready(function () {
   //getMustacheTemplateDom(oData);
-  addProductDetailsToCells();
+  addProductDetailsToCells(aContentData);
+  //addProductDetailsToCell(0,1,aContentData);
 });
 
 
@@ -15,25 +16,7 @@ addProductDetailsToCell = function(rowCount, cellCount, oData){
   });
 }
 
-addProductDetailsToCells = function () {
-  var aData = [{
-                 "label": "product1",
-                 "description": "description",
-                 "path": "../images/ui-icons_444444_256x240.png"
-               }, {
-                 "label": "product2",
-                 "description": "description",
-                 "path": "../images/ui-icons_444444_256x240.png"
-               }, {}, {
-                 "label": "product4",
-                 "description": "description",
-                 "path": "../images/ui-icons_444444_256x240.png"
-               }, {}, {
-                 "label": "product5",
-                 "description": "description",
-                 "path": "../images/ui-icons_444444_256x240.png"
-               }];
-
+addProductDetailsToCells = function (aData) {
   var $div = $("#temp");
 
   $div.load("MustacheTemplate.html", function () {
