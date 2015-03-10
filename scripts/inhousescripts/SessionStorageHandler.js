@@ -5,19 +5,19 @@ function SessionStorageHandler () {
 
   this.getSessionData = function () {
     if (!oSessionStorage.getItem('dataModel')) {
-      oSessionStorage.setItem('dataModel', {defaultUserContext: oDefaultUserSessionData});
+      oSessionStorage.setItem('dataModel', JSON.stringify(oDefaultUserSessionData));
     }
 
-    return oSessionStorage.getItem('dataModel');
+    return JSON.parse(oSessionStorage.getItem('dataModel'));
   }
 
   this.setDataToSession = function (sKey, oData) {
-    oSessionStorage.dataModel[sKey] = oData;
+    oSessionStorage.setItem(sKey, JSON.stringify(oData));
   }
 
   this.getDataFromSession = function (sKey) {
 
-    return oSessionStorage.dataModel[sKey];
+    return JSON.parse(oSessionStorage.getItem(sKey));
   }
 
   this.clearSessionData = function () {
