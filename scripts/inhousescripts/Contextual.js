@@ -43,7 +43,7 @@ function populateGrids(){
 
   var aContent = aContentData;
 
-  var oUserData = oDefaultUserSessionData;
+  var oUserData = sessionStorage.userData;
 
   
 
