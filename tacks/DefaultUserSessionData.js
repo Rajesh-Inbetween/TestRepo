@@ -1,4 +1,4 @@
-var defaultUserData = {
+var oDefaultUserSessionData = {
 
   "Financial Affinity":{relevance:0},
   "Internationality":{relevance:0},
