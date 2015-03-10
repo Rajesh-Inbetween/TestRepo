@@ -39,6 +39,7 @@ var aContentData = [
         "strength":"strong"
       }
     ],
+    "image": "../images/Product.jpg",
     "Region":[
       {"name":"North","relevance":100}
     ]
@@ -46,7 +47,7 @@ var aContentData = [
   {
     "label": "Children Investment",
     "id": "2",
-    "Tags": [
+    "Target Group": [
       {
         "name": "Internationality",
         "relevance": -80,
@@ -83,6 +84,7 @@ var aContentData = [
         "strength":"strong"
       }
     ],
+    "image": "../images/Product.jpg",
     "Region":[
       {"name":"North","relevance":100},
       {"name":"East","relevance":100}
@@ -128,6 +130,7 @@ var aContentData = [
         "strength":"strong"
       }
     ],
+    "image": "../images/Product.jpg",
     "Region":[
       {"name":"West","relevance":100},
       {"name":"South","relevance":100}
@@ -173,6 +176,7 @@ var aContentData = [
         "strength":"strong"
       }
     ],
+    "image": "../images/Product.jpg",
     "Region":[
       {"name":"South","relevance":100}
     ]
@@ -217,6 +221,7 @@ var aContentData = [
         "strength":"strong"
       }
     ],
+    "image": "../images/Product.jpg",
     "Region":[
       {"name":"East","relevance":100},
       {"name":"South","relevance":100}
@@ -262,6 +267,7 @@ var aContentData = [
         "strength":"weak"
       }
     ],
+    "image": "../images/Product.jpg",
     "Region":[
       {"name":"East","relevance":100}
     ]
