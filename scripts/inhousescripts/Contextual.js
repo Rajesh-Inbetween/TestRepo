@@ -100,13 +100,21 @@ function populateGrids(){
   console.log(aContentToUse.length);
 
   
-
-
-
   var iContentIndex = 0;
   while(aContentToUse.length < iGridSize && iContentIndex < aContent.length){
     aContentToUse.push(aContent[iContentIndex]);
+    iContentIndex++;
   }
+
+  var $aGridCells = $('#content-grid').find('.grid-cell');
+  for(var iGridCellIndex = 0 ; iGridCellIndex < $aGridCells.length ; iGridCellIndex++){
+    var oTemplate = getMustacheTemplateDom(aContentToUse[iGridCellIndex]);
+    $aGridCells.eq(iGridCellIndex).html(oTemplate);
+  }
+  //for(var iContentToUseIndex = 0 ; iContentToUseIndex < aContentToUse.length ; iContentToUseIndex++){
+  //  getMustacheTemplateDom();
+  //}
+
   console.log(aContentToUse.length);
 }
 
@@ -118,6 +126,7 @@ function populateGrids(){
 function getContentWithTargetGroup(aClonedContent, sTargetGroup){
   for(var iContentIndex = 0 ; iContentIndex < aClonedContent.length ; iContentIndex++){
     var oContent = aClonedContent[iContentIndex];
+    oContent.label = "RandomCrap " + oContent.label;
     var aContentTargetGroups = oContent["Target Group"];
     for(var iTargetGroupIndex=0 ; iTargetGroupIndex < aContentTargetGroups.length ; iTargetGroupIndex++){
       var oTargetGroup = aContentTargetGroups[iTargetGroupIndex];
