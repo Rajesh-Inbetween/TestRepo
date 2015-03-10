@@ -39,7 +39,9 @@ var aContentData = [
         "strength":"strong"
       }
     ],
-    "Region":["north","south"]
+    "Region":[
+      {"name":"North","relevance":100}
+    ]
   },
   {
     "label": "Children Investment",
@@ -80,12 +82,16 @@ var aContentData = [
         "relevance": 80,
         "strength":"strong"
       }
+    ],
+    "Region":[
+      {"name":"North","relevance":100},
+      {"name":"East","relevance":100}
     ]
   },
   {
     "label": "Foreign Electronic Investment Article",
     "id": "3",
-    "Tags": [
+    "Target Group": [
       {
         "name": "Internationality",
         "relevance": 100,
@@ -121,12 +127,16 @@ var aContentData = [
         "relevance": 80,
         "strength":"strong"
       }
+    ],
+    "Region":[
+      {"name":"West","relevance":100},
+      {"name":"South","relevance":100}
     ]
   },
   {
     "label": "How to invest in stocks article",
     "id": "4",
-    "Tags": [
+    "Target Group": [
       {
         "name": "Internationality",
         "relevance": 30,
@@ -162,12 +172,15 @@ var aContentData = [
         "relevance": 90,
         "strength":"strong"
       }
+    ],
+    "Region":[
+      {"name":"South","relevance":100}
     ]
   },
   {
     "label": "Foreign Investment 101",
     "id": "5",
-    "Tags": [
+    "Target Group": [
       {
         "name": "Internationality",
         "relevance": 100,
@@ -203,12 +216,16 @@ var aContentData = [
         "relevance": 90,
         "strength":"strong"
       }
+    ],
+    "Region":[
+      {"name":"East","relevance":100},
+      {"name":"South","relevance":100}
     ]
   },
   {
     "label": "Life Insurancce",
     "id": "6",
-    "Tags": [
+    "Target Group": [
       {
         "name": "Internationality",
         "relevance": 10,
@@ -244,6 +261,9 @@ var aContentData = [
         "relevance": 50,
         "strength":"weak"
       }
+    ],
+    "Region":[
+      {"name":"East","relevance":100}
     ]
   }
 ];
