@@ -149,7 +149,7 @@ var oProductData = [
       },
       {
         "name": "Cultural Type",
-        "relevance": 50,
+        "relevance": -20,
         "strength":"weak"
       },
       {
@@ -161,6 +161,88 @@ var oProductData = [
         "name": "Financial Affinity",
         "relevance": 90,
         "strength":"strong"
+      }
+    ]
+  },
+  {
+    "label": "Foreign Investment 101",
+    "id": "5",
+    "Tags": [
+      {
+        "name": "Internationality",
+        "relevance": 100,
+        "strength":"strong"
+      },
+      {
+        "name": "Digital Affinity",
+        "relevance": 50,
+        "strength":"strong"
+      },
+      {
+        "name": "Family Status",
+        "relevance": -30,
+        "strength":"weak"
+      },
+      {
+        "name": "Socioeconomics",
+        "relevance": 50,
+        "strength":"strong"
+      },
+      {
+        "name": "Cultural Type",
+        "relevance": 50,
+        "strength":"strong"
+      },
+      {
+        "name": "Philantropy & Responsibility",
+        "relevance": 60,
+        "strength":"indicator"
+      },
+      {
+        "name": "Financial Affinity",
+        "relevance": 90,
+        "strength":"strong"
+      }
+    ]
+  },
+  {
+    "label": "Life Insurancce",
+    "id": "6",
+    "Tags": [
+      {
+        "name": "Internationality",
+        "relevance": 10,
+        "strength":"indicator"
+      },
+      {
+        "name": "Digital Affinity",
+        "relevance": 50,
+        "strength":"weak"
+      },
+      {
+        "name": "Family Status",
+        "relevance": 50,
+        "strength":"weak"
+      },
+      {
+        "name": "Socioeconomics",
+        "relevance": 50,
+        "strength":"strong"
+      },
+      {
+        "name": "Cultural Type",
+        "relevance": 50,
+        "strength":"strong"
+      },
+      {
+        "name": "Philantropy & Responsibility",
+        "relevance": -100,
+        "strength":"indicator"
+      },
+      {
+        "name": "Financial Affinity",
+        "relevance": 50,
+        "strength":"weak"
       }
     ]
   }
