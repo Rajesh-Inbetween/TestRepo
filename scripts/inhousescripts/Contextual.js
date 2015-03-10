@@ -96,26 +96,17 @@ function populateGrids(){
       }
     }
   }
-  console.log(oRuleData);
-  console.log(aContentToUse.length);
-
-  
   var iContentIndex = 0;
   while(aContentToUse.length < iGridSize && iContentIndex < aContent.length){
     aContentToUse.push(aContent[iContentIndex]);
     iContentIndex++;
   }
-
-  var $aGridCells = $('#content-grid').find('.grid-cell');
-  for(var iGridCellIndex = 0 ; iGridCellIndex < $aGridCells.length ; iGridCellIndex++){
-    var oTemplate = getMustacheTemplateDom(aContentToUse[iGridCellIndex]);
-    $aGridCells.eq(iGridCellIndex).html(oTemplate);
-  }
-  //for(var iContentToUseIndex = 0 ; iContentToUseIndex < aContentToUse.length ; iContentToUseIndex++){
-  //  getMustacheTemplateDom();
+  //var $aGridCells = $('#content-grid').find('.grid-cell');
+  //for(var iGridCellIndex = 0 ; iGridCellIndex < $aGridCells.length ; iGridCellIndex++){
+  //  var oTemplate = getMustacheTemplateDom(aContentToUse[iGridCellIndex]);
+  //  $aGridCells.eq(iGridCellIndex).html(oTemplate);
   //}
-
-  console.log(aContentToUse.length);
+  addProductDetailsToCells(aContentToUse);
 }
 
 /**

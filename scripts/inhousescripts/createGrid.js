@@ -1,7 +1,8 @@
 $(document).ready(function () {
   //getMustacheTemplateDom(oData);
-  addProductDetailsToCells(aContentData);
+  //addProductDetailsToCells(aContentData);
   //addProductDetailsToCell(0,1,aContentData);
+  populateGrids();
 });
 
 
