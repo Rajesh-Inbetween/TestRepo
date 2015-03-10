@@ -1,6 +1,7 @@
 
 function gridCellClicked (oEvent) {
-  var $productTemplate = $(oEvent.target());
-  var iProductId = $productTemplate.attr('data-id');
-  
+  var $contentTemplate = $(oEvent.target);
+  var iContentId = $contentTemplate.attr('data-id');
+  var oContent = getContentById(iContentId);
+  setUserRelevance(oContent);
 }

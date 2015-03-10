@@ -1,3 +1,14 @@
+function setUserRelevance (oContent) {
+  var aContentTargetGroups = oContent["Target Group"];
+
+  for (var iTargetGroupIndex = 0; iTargetGroupIndex < aContentTargetGroups.length; iTargetGroupIndex++) {
+    var oContentTargetGroup = aContentTargetGroups[iTargetGroupIndex];
+    var oUserData = sessionData.userData[oContentTargetGroup.name];
+    var iUpdatedUserDataRelevance = computeUserRelevance(oContentTargetGroup, oUserData);
+    oUserData.relevance = iUpdatedUserDataRelevance;
+  }
+}
+
 function computeUserRelevance(productDataTargetGroup, userTargetGroup){
 
   var productTargetGroupRelevance = productDataTargetGroup.relevance;
@@ -27,11 +38,11 @@ function computeUserRelevance(productDataTargetGroup, userTargetGroup){
   return computedRelevance;
 }
 
-function getContentById(id){
+function getContentById(iContentid){
   var aContent = aContentData;
   for(var iContentIndex = 0 ; iContentIndex < aContentData.length ; iContentIndex++){
     var oContent = aContent[iContentIndex];
-    if(oContent.id == id){
+    if(oContent.id == iContentid){
       return oContent;
     }
   }
