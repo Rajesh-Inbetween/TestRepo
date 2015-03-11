@@ -59,10 +59,8 @@ function getContentById(iContentid){
   return false;
 }
 
-function populateGrids(aContents){
+function populateGrids(aContents, bIsStartup){
 
-  //var aContent = $.extend(true, [], aContentData);
-  var oUserData = $.extend(true, {}, sessionData.userData);
   var oRuleData = $.extend(true,{},oRules);
   var iGridSize = sessionData.gridSize;
   var aContentToUse = [];
@@ -70,15 +68,29 @@ function populateGrids(aContents){
   //Applying content as per rule set.
   targetGroup:
   for(var sTargetGroupType in oRuleData.targetGroup){
-    while (oRuleData.targetGroup[sTargetGroupType] > 0) {
+    var oRuleTargetGroupData = oRuleData.targetGroup[sTargetGroupType];
+    var iTargetGroupRuleCount = 0;
+    if(bIsStartup){
+      iTargetGroupRuleCount = oRuleTargetGroupData.start;
+    } else {
+      iTargetGroupRuleCount = oRuleTargetGroupData.min;
+    }
+    while (iTargetGroupRuleCount > 0) {
       var oContent = getContentWithTargetGroup(aContents, sTargetGroupType);
-      if (oContent) {
-        oRuleData.targetGroup[sTargetGroupType]--;
+      if (oContent && checkWithMaxRuleCount(oContent,oRuleData)) {
+        iTargetGroupRuleCount--;
         var aCategories = oContent["category"];
         for (var iCategoryIndex = 0; iCategoryIndex < aCategories.length; iCategoryIndex++){
           var sCategory = aCategories[iCategoryIndex].name;
-          if (oRuleData.category[sCategory] > 0) {
-            oRuleData.category[sCategory]--;
+          var oRuleCategoryData = oRuleData.category[sCategory];
+          var iCategoryRuleCount = 0;
+          if(bIsStartup){
+            iCategoryRuleCount = oRuleCategoryData.start;
+          } else {
+            iCategoryRuleCount = oRuleCategoryData.min;
+          }
+          if (iCategoryRuleCount > 0) {
+            iCategoryRuleCount--;
           }
         }
         aContentToUse.push(oContent);
@@ -92,10 +104,17 @@ function populateGrids(aContents){
   }
   category:
   for(sCategory in oRuleData.category){
-    while(oRuleData.category[sCategory] > 0){
+    var oCategoryRuleData = oRuleData.category[sCategory];
+    var iCategoryRuleCount = 0;
+    if(bIsStartup){
+      iCategoryRuleCount = oCategoryRuleData.start;
+    } else {
+      iCategoryRuleCount = oCategoryRuleData.min;
+    }
+    while(iCategoryRuleCount > 0){
       var oContent = getContentForRegion(aContents, sCategory);
-      if (oContent) {
-        oRuleData.category[sCategory]--;
+      if (oContent && checkWithMaxRuleCount(oContent,oRuleData)) {
+        iCategoryRuleCount--;
         aContentToUse.push(oContent);
         if(aContentToUse.length >= iGridSize){
           break category;
@@ -105,10 +124,49 @@ function populateGrids(aContents){
       }
     }
   }
+
   for(var iContentIndex = aContents.length - 1; aContentToUse.length < iGridSize && iContentIndex >= 0 ; iContentIndex--){
-    aContentToUse.push(aContents[iContentIndex]);
+    if (checkWithMaxRuleCount(aContents[iContentIndex], oRuleData)) {
+      aContentToUse.push(aContents[iContentIndex]);
+    }
   }
   addProductDetailsToCells(aContentToUse);
+}
+
+function checkWithMaxRuleCount (oContent, oClonedRuleData) {
+  var aRulesToBeUpdated = [];
+
+  for (var iCategoryCount = 0; iCategoryCount < oContent.category.length; iCategoryCount++) {
+    var oContentCategory = oContent.category[iCategoryCount];
+    var sCategoryName = oContentCategory.name;
+    var oRuleForCategory = oClonedRuleData.category[sCategoryName];
+    var iRuleMax = oRuleForCategory.max - oRuleForCategory.min;
+    if (iRuleMax > 0) {
+      aRulesToBeUpdated.push(oRuleForCategory);
+    } else {
+      return false;
+    }
+  }
+
+  for (var iTargetGroupIndex = 0; iTargetGroupIndex < oContent["Target Group"].length; iTargetGroupIndex++) {
+    var oTargetGroup = oContent["Target Group"][iTargetGroupIndex];
+    var sTargetGroupName = oTargetGroup.name;
+    var oRuleForTargetGroup = oClonedRuleData.targetGroup[sTargetGroupName];
+    var iRuleMax = oRuleForTargetGroup.max - oRuleForTargetGroup.min;
+    if (iRuleMax > 0) {
+      aRulesToBeUpdated.push(oRuleForTargetGroup);
+    } else {
+      return false;
+    }
+  }
+
+  //if (bFlag) {
+    for (var iRuleCount = 0; iRuleCount < aRulesToBeUpdated.length; iRuleCount++) {
+      aRulesToBeUpdated[iRuleCount].max--;
+    }
+  //}
+
+  return true;
 }
 
 /**
@@ -181,7 +239,7 @@ function prioritizeContent (aContents) {
       iContentScore += 100;
     }
     if(sessionData.viewedContentIds.indexOf(oContent.id) >= 0){
-      iContentScore = -30;
+      iContentScore -= 100;
     }
 
     var iRelevanceMean = iRelevanceSum / aContentTargetGroups.length;
@@ -194,11 +252,14 @@ function prioritizeContent (aContents) {
     } else if (Math.abs(iRelevanceMean) <= 50) {
       iContentScore += 1;
     }
-
+    //console.log(oContent.label  + " : " + iContentScore);
     oContent.score = iContentScore;
   }
 
   aContents.sort(function(a,b){
     return a.score - b.score;
   });
+  /*for(var i = 0 ; i < aContents.length ; i++){
+    console.log(aContents[i].label + " : " + aContents[i].score);
+  }*/
 }

@@ -5,7 +5,7 @@ $(document).ready(function () {
   //$('.grid .grid-row .grid-cell').on('click',cellClicked);
   var aClonedContents = $.extend(true,[],aContentData);
   prioritizeContent(aClonedContents);
-  populateGrids(aClonedContents);
+  populateGrids(aClonedContents, true);
   refreshUserData();
 });
 
@@ -36,9 +36,9 @@ getMustacheTemplateDom = function(oData){
 
 cellClicked = function(oEvent){
   var $gridCell = $(oEvent.currentTarget);
-  $('.grid-cell').removeClass('cellSelected');
-  $gridCell.addClass('cellSelected');
+  //$('.grid-cell').removeClass('cellSelected');
+  //$gridCell.addClass('cellSelected');
   computeUserDataRelevanceAndUpdateGrids($gridCell);
-  var $maskedCell = $('<div class="maskedCell"></div>');
-  $gridCell.append($maskedCell);
+  //var $maskedCell = $('<div class="maskedCell"></div>');
+  //$gridCell.append($maskedCell);
 }

@@ -39,7 +39,6 @@ function computeUserDataRelevanceAndUpdateGrids($gridCell){
   setUserRelevance(oContent);
   var aClonedContents = $.extend(true,[],aContentData);
   prioritizeContent(aClonedContents);
-  console.log(JSON.stringify(aClonedContents));
   populateGrids(aClonedContents);
   updateProductRelevanceTable(oContent);
   refreshUserData();
