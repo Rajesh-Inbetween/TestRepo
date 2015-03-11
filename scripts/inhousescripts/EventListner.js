@@ -1,6 +1,8 @@
 
 $(document).ready(function () {
-  attachEventOnElement()
+  attachEventOnElement();
+console.log(123);
+  $('body').on('click','#show-hide-product-relevance',function(){$('.table-wrapper').toggle();});
 });
 
 function attachEventOnElement () {
