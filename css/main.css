@@ -72,7 +72,7 @@ body {
 #relevance-data{
     display: inline-block;
     float:right;
-    min-width: 46%;
+    min-width: 48%;
 }
 
 #product-relevance-history{
@@ -89,10 +89,6 @@ body {
 #product-relevance-table th, #product-relevance-table td{
     border : 1px solid grey;
     max-width: 84px;
-}
-
-#product-data{
-    float:right;
 }
 
 .product-relevance-table-data{
