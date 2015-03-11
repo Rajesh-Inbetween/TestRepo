@@ -29,13 +29,13 @@ function computeUserRelevance(productDataTargetGroup, userTargetGroup){
       computedRelevance = productTargetGroupRelevance;
       break;
     case 'strong':
-      computedRelevance = userTargetGroup.relevance + (productTargetGroupRelevance/2);
+      computedRelevance = userTargetGroup.relevance + (userTargetGroup.relevance - (productTargetGroupRelevance/2));
       break;
     case 'weak':
-      computedRelevance = userTargetGroup.relevance + (productTargetGroupRelevance/4);
+      computedRelevance = userTargetGroup.relevance + (userTargetGroup.relevance - (productTargetGroupRelevance/4));
       break;
     case 'indicator':
-      computedRelevance = userTargetGroup.relevance + (productTargetGroupRelevance/10);
+      computedRelevance = userTargetGroup.relevance + (userTargetGroup.relevance - (productTargetGroupRelevance/10));
       break;
     default:
       computedRelevance = userTargetGroup.relevance;
