@@ -61,3 +61,7 @@ body {
 .product_template_label {
     margin-top: 40%;
 }
+
+#content-grid {
+    margin: 5% 0 0 20%;
+}

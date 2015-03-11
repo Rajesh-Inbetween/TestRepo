@@ -21,27 +21,26 @@ function computeUserRelevance(productDataTargetGroup, userTargetGroup){
   var productTargetGroupRelevance = productDataTargetGroup.relevance;
   var productTargetGroupStrength = productDataTargetGroup.strength;
   var computedRelevance = 0;
+  if(productTargetGroupRelevance == 0){
+    return userTargetGroup.relevance;
+  }
   switch (productTargetGroupStrength){
     case 'absolute':
       computedRelevance = productTargetGroupRelevance;
       break;
     case 'strong':
-      computedRelevance = userTargetGroup.relevance;
-      computedRelevance += (productTargetGroupRelevance/2);
+      computedRelevance = userTargetGroup.relevance + (productTargetGroupRelevance/2);
       break;
     case 'weak':
-      computedRelevance = userTargetGroup.relevance;
-      computedRelevance += (productTargetGroupRelevance/4);
+      computedRelevance = userTargetGroup.relevance + (productTargetGroupRelevance/4);
       break;
     case 'indicator':
-      computedRelevance = userTargetGroup.relevance;
-      computedRelevance += (productTargetGroupRelevance/10);
+      computedRelevance = userTargetGroup.relevance + (productTargetGroupRelevance/10);
       break;
     default:
-      alert("Wrong tag group Strength");
+      computedRelevance = userTargetGroup.relevance;
       break;
   }
-  //userTargetGroup.relevance = computedRelevance;
   if (computedRelevance > 100) {
     computedRelevance = 100;
   } else if (computedRelevance < -100) {
