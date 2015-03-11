@@ -7,6 +7,8 @@ if (sessionStorage.userData) {
 }
 
 sessionData = {
+  tableColumns : ["Content Title","Financial Affinity","Internationality",
+    "Digital Affinity", "Socioeconomics", "Family Status", "Cultural Type","Philantropy & Responsibility"],
   gridSize: 7,
   userData: oUserData
 };

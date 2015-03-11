@@ -52,8 +52,11 @@ body {
 
 #user-data{
     padding: 16px;
-    background-color: rgb(175, 170, 170);
+    position: relative;
+    background-color: rgb(208, 208, 208);;
     border: 1px solid gray;
+    width: 60%;
+    margin-bottom: 10%;
 }
 
 #label-user-data{
@@ -78,10 +81,24 @@ body {
 }
 
 #product-relevance-table {
-    font-size: 11px;
+    font-size: 10px;
+    background-color: rgb(208, 208, 208);
 }
 
 #product-relevance-table th, #product-relevance-table td{
     border : 1px solid grey;
     max-width: 84px;
+}
+
+#product-data{
+    float:right;
+}
+
+.product-relevance-table-data{
+    font-size: 12px;
+}
+
+.table-wrapper{
+    max-height: 355px;
+    overflow: auto;
 }

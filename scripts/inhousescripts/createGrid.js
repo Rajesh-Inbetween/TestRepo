@@ -28,8 +28,8 @@ getMustacheTemplateDom = function(oData){
 
 cellClicked = function(oEvent){
   var oTarget = oEvent.currentTarget;
-    var $productTemplate = $(oTarget).find('.product_template');
-    showDialog(oTarget, $productTemplate.attr('data-content'));
+  var $productTemplate = $(oTarget).find('.product_template');
+  showDialog(oTarget, $productTemplate.attr('data-content'));
 }
 
 function showDialog ( oTarget, dataContentt) {

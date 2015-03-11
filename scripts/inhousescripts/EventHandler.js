@@ -24,7 +24,7 @@ function refreshUserData () {
     //sDisplayUserString += sKey + " : " + sessionData.userData[sKey].relevance + "<br>";
     sDisplayUserString += "<tr>" +
     "<td class='user-data-cell'>" + sKey + "</td>" +
-    "<td class='user-data-cell'>" + userRelevance + "</td>" +
+    "<td class='user-data-cell'>" + userRelevance + "%</td>" +
     "<td class='user-data-cell' style='background-color: " + color + ";width:50px'></td>" +
     "</tr>"
     console.log(sKey + " : " + sessionData.userData[sKey].relevance)
@@ -38,6 +38,64 @@ function computeUserDataRelevanceAndUpdateGrids(oCell){
   var iContentId = $contentTemplate.attr('data-id');
   var oContent = getContentById(iContentId);
   setUserRelevance(oContent);
-
+  updateProductRelevanceTable(oContent);
   refreshUserData();
+}
+
+function updateProductRelevanceTable(oContent){
+
+  var oUserData = sessionData.userData;
+  var tableColumns = sessionData.tableColumns;
+
+  var tableHTML = "<tr class='product-relevance-table-data'>";
+  tableHTML += "<td>" + oContent.label +"</td>";
+  var aContentTargetGroups = oContent["Target Group"];
+  for( var iTableColumnIndex = 1 ; iTableColumnIndex < tableColumns.length ; iTableColumnIndex++){
+    var sTargetGroup = tableColumns[iTableColumnIndex];
+    var bFoundTargetGroup = false;
+    for(var iTargetGroupIndex = 0 ; iTargetGroupIndex < aContentTargetGroups.length ; iTargetGroupIndex++){
+      var oTargetGroup = aContentTargetGroups[iTargetGroupIndex];
+      if(oTargetGroup.name == sTargetGroup){
+        bFoundTargetGroup = true;
+        var iTargetGroupRelevance = oTargetGroup.relevance;
+        var sTargetGroupStrength = oTargetGroup.strength;
+        var sStrengthColour = "transparent";
+        if(iTargetGroupRelevance != 0){
+          switch(sTargetGroupStrength){
+            case 'absolute':
+              sStrengthColour = "rgb(255, 110, 110)";
+              break;
+            case 'strong':
+              sStrengthColour = "rgb(126, 126, 255)";
+              break;
+            case 'weak':
+              sStrengthColour = "rgb(101, 205, 101)";
+              break;
+            case 'indicator':
+              sStrengthColour = "rgb(110, 110, 110)";
+              break;
+          }
+        }
+        tableHTML += "<td style='background-color: " + sStrengthColour + "'>" + iTargetGroupRelevance + "%</td>";
+        break;
+      }
+    }
+    if(!bFoundTargetGroup){
+      tableHTML += "<td>0%</td>";
+    }
+  }
+  tableHTML += "</tr>";
+
+  tableHTML += "<tr class='product-relevance-table-data'>";
+  tableHTML += "<td></td>"
+
+  for( var iTableColumnIndex = 1 ; iTableColumnIndex < tableColumns.length ; iTableColumnIndex++){
+    var sTargetGroup = tableColumns[iTableColumnIndex];
+    var iUserDataTargetGroupRelevance = oUserData[sTargetGroup].relevance;
+    console.log("<td>" + iUserDataTargetGroupRelevance + "%</td>");
+    tableHTML += "<td>" + iUserDataTargetGroupRelevance + "%</td>";
+  }
+  tableHTML += "</tr>";
+  $('#product-relevance-table tbody').append(tableHTML);
+
 }
