@@ -31,8 +31,7 @@ function refreshUserData () {
   $('#display-user-data').html(sDisplayUserString);
 }
 
-function computeUserDataRelevanceAndUpdateGrids(oCell){
-  var $gridCell = $(oCell);
+function computeUserDataRelevanceAndUpdateGrids($gridCell){
   var $contentTemplate = $gridCell.find('.product_template');
   var iContentId = $contentTemplate.attr('data-id');
   var oContent = getContentById(iContentId);
@@ -40,6 +39,7 @@ function computeUserDataRelevanceAndUpdateGrids(oCell){
   setUserRelevance(oContent);
   var aClonedContents = $.extend(true,[],aContentData);
   prioritizeContent(aClonedContents);
+  console.log(JSON.stringify(aClonedContents));
   populateGrids(aClonedContents);
   updateProductRelevanceTable(oContent);
   refreshUserData();

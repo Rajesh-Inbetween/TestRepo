@@ -69,7 +69,7 @@ function populateGrids(aContents){
 
   //Applying content as per rule set.
   targetGroup:
-  for(sTargetGroupType in oRuleData.targetGroup){
+  for(var sTargetGroupType in oRuleData.targetGroup){
     while (oRuleData.targetGroup[sTargetGroupType] > 0) {
       var oContent = getContentWithTargetGroup(aContents, sTargetGroupType);
       if (oContent) {
@@ -109,88 +109,6 @@ function populateGrids(aContents){
     aContentToUse.push(aContents[iContentIndex]);
   }
   addProductDetailsToCells(aContentToUse);
-}
-
-function addContentAccordingToUserRelevance (aClonedContent, aContentToUse) {
-  /*var iLoopLength;
-  console.log(sTargetGroupName + " : " + sScaleCount);
-  switch(sScaleCount){
-    case RELEVANCE_ALL:
-      iLoopLength = aClonedContent.length;
-      break;
-
-    case RELEVANCE_ONE:
-      iLoopLength = 1;
-      break;
-
-    case RELEVANCE_TWO:
-      iLoopLength = 2;
-      break;
-
-    case RELEVANCE_THREE:
-      iLoopLength = 3;
-      break;
-
-    default :
-      iLoopLength = 0;
-  }*/
-
-  /*for (var iCount = 0; iCount < iLoopLength; iCount++) {*/
-    var aContents = getContentForUserTargetGroup(aClonedContent);
-    //var oContent = getContentWithTargetGroup(aClonedContent, sTargetGroupName);
-    if (aContents.length) {
-      aContentToUse.push.apply(aContentToUse, aContents);
-    }
-}
-
-function getContentForUserTargetGroup(aClonedContent){
-  var aContentToBePushed = [];
-  var oUserData = sessionData.userData;
-
-  for(var iContentIndex = aClonedContent.length - 1 ; iContentIndex >= 0 ; iContentIndex--){
-    var oContent = aClonedContent[iContentIndex];
-    var aContentTargetGroups = oContent["Target Group"];
-    var bIsContentRelevant = true;
-    for(var iTargetGroupIndex=0 ; iTargetGroupIndex < aContentTargetGroups.length ; iTargetGroupIndex++){
-      var oContentTargetGroup = aContentTargetGroups[iTargetGroupIndex];
-      var oUserTargetGroup = oUserData[oContentTargetGroup.name];
-      var iRelevanceDifference = oUserTargetGroup.relevance - oContentTargetGroup.relevance;
-      var bIsBothNegative = oUserTargetGroup.relevance < 0 && oContentTargetGroup.relevance < 0;
-      var bIsBothPositive = oUserTargetGroup.relevance >= 0 && oContentTargetGroup.relevance >= 0;
-      if((bIsBothNegative || bIsBothPositive) && iRelevanceDifference > -30 && iRelevanceDifference < 30){
-        continue;
-      } else {
-        bIsContentRelevant = false;
-        break;
-      }
-    }
-    if(bIsContentRelevant){
-      aContentToBePushed.push(oContent);
-      aClonedContent.splice(iContentIndex,1);
-    }
-  }
-  console.log(aContentToBePushed);
-  return aContentToBePushed;
-}
-
-
-function getScaleForRelevance (fRelevance) {
-  if (fRelevance == 100) {
-
-    return RELEVANCE_ALL;
-  } else if (fRelevance > 10 && fRelevance < 40) {
-
-    return RELEVANCE_ONE;
-  } else if (fRelevance > 40 && fRelevance < 80) {
-
-    return RELEVANCE_TWO;
-  } else if (fRelevance > 80 && fRelevance < 100) {
-
-    return RELEVANCE_THREE;
-  } else {
-
-    return false;
-  }
 }
 
 /**
@@ -235,8 +153,9 @@ function prioritizeContent (aContents) {
     var oContent = aContents[iContentIndex];
     var aContentTargetGroups = oContent["Target Group"];
     var bIsConflicting = false;
-    //var bIsSameDirection = true;
-    var iDirectionalCount = 0;
+    var bIsSameDirection = true;
+    var iContentScore = 0;
+    var iRelevanceSum = 0;
 
     for(var iTargetGroupIndex = 0 ; iTargetGroupIndex < aContentTargetGroups.length ; iTargetGroupIndex++){
       var oContentTargetGroup = aContentTargetGroups[iTargetGroupIndex];
@@ -244,23 +163,42 @@ function prioritizeContent (aContents) {
       var bIsBothNegative = oUserTargetGroup.relevance < 0 && oContentTargetGroup.relevance < 0;
       var bIsBothPositive = oUserTargetGroup.relevance >= 0 && oContentTargetGroup.relevance >= 0;
       var iRelevanceDifference = oUserTargetGroup.relevance - oContentTargetGroup.relevance;
+      iRelevanceSum += iRelevanceDifference;
       if (Math.abs(iRelevanceDifference) == 200) {
         bIsConflicting = true;
+        bIsSameDirection = false;
       } else if (bIsBothNegative || bIsBothPositive) {
-        iDirectionalCount++;
+        iContentScore++;
+      } else {
+        bIsSameDirection = false;
+        iContentScore--;
       }
     }
+
     if(bIsConflicting){
-      iDirectionalCount = 0;
+      iContentScore = -100;
+    } else if(bIsSameDirection){
+      iContentScore += 100;
     }
-    oContent.directionCount = iDirectionalCount;
+    if(sessionData.viewedContentIds.indexOf(oContent.id) >= 0){
+      iContentScore = -30;
+    }
+
+    var iRelevanceMean = iRelevanceSum / aContentTargetGroups.length;
+    if (Math.abs(iRelevanceMean) <= 10) {
+      iContentScore += 4;
+    } else if (Math.abs(iRelevanceMean) <= 20) {
+      iContentScore += 3;
+    } else if (Math.abs(iRelevanceMean) <= 30) {
+      iContentScore += 2;
+    } else if (Math.abs(iRelevanceMean) <= 50) {
+      iContentScore += 1;
+    }
+
+    oContent.score = iContentScore;
   }
 
   aContents.sort(function(a,b){
-    return a.directionCount - b.directionCount;
+    return a.score - b.score;
   });
-
-  //sorting highPriority array of content as per mean of the differences in the relevance.
-
-
 }

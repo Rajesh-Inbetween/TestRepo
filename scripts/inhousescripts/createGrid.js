@@ -35,20 +35,10 @@ getMustacheTemplateDom = function(oData){
 }
 
 cellClicked = function(oEvent){
-  var oTarget = oEvent.currentTarget;
+  var $gridCell = $(oEvent.currentTarget);
   $('.grid-cell').removeClass('cellSelected');
-  $(oTarget).addClass('cellSelected');
-  var $productTemplate = $(oTarget).find('.product_template');
-  computeUserDataRelevanceAndUpdateGrids(oTarget);
+  $gridCell.addClass('cellSelected');
+  computeUserDataRelevanceAndUpdateGrids($gridCell);
   var $maskedCell = $('<div class="maskedCell"></div>');
-  $(oTarget).append($maskedCell);
-  //showDialog(oTarget, $productTemplate.attr('data-content'));
-}
-
-function showDialog ( oTarget, dataContentt) {
-  $('#dialog').html(dataContentt);
-  $('#dialog').dialog({
-    title:"Content"
-
-  });
+  $gridCell.append($maskedCell);
 }
