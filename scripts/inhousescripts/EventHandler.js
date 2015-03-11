@@ -24,7 +24,7 @@ function refreshUserData () {
     //sDisplayUserString += sKey + " : " + sessionData.userData[sKey].relevance + "<br>";
     sDisplayUserString += "<tr>" +
     "<td class='user-data-cell'>" + sKey + "</td>" +
-    "<td class='user-data-cell'>" + userRelevance + "%</td>" +
+    "<td class='user-data-cell'>" + userRelevance.toFixed(2) + "%</td>" +
     "<td class='user-data-cell' style='background-color: " + color + ";width:50px'></td>" +
     "</tr>"
     console.log(sKey + " : " + sessionData.userData[sKey].relevance)
