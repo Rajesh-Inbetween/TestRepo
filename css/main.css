@@ -1,39 +1,51 @@
 
 .grid {
-    display: table
+    display: table;
+    background-color: rgb(189, 208, 224);
 }
 
 .grid-row{
-    height: 100px;
+    height: 250px;
     margin-top: 10px;
     display: table-row;
     padding: 5px;
 }
 
 .grid-cell{
-    height: 100px;
-    width: 100px;
+    height: 240px;
+    width: 240px;
     display: table-cell;
     padding: 5px;
-    border: 1px solid;
 }
 
 .grid-row:first-child .grid-cell:first-child {
-    padding: 5px 0px 0px 5px;
+    /*padding: 5px 0px 0px 5px;*/
 }
 
 .grid-row:first-child .grid-cell:last-child {
-    padding: 5px 5px 0px 0px;
+    /*padding: 5px 5px 0px 0px;*/
 }
 
 .grid-row:last-child .grid-cell:last-child {
-    padding: 0px 5px 5px 0px;
+    /*padding: 0px 5px 5px 0px;*/
 }
 
 .grid-row:last-child .grid-cell:first-child {
-    padding: 0px 0px 5px 5px;
+    /*padding: 0px 0px 5px 5px;*/
 }
 
 #temp {
     display: none;
+}
+
+body {
+    background-color: #999;
+}
+
+.product_template {
+    border: 1px solid;
+    height: 240px;
+    background-color: white;
+    padding: 5px;
+    text-align: center;
 }
