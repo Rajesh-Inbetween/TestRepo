@@ -2,7 +2,7 @@ $(document).ready(function () {
   //getMustacheTemplateDom(oData);
   //addProductDetailsToCells(aContentData);
   //addProductDetailsToCell(0,1,aContentData);
-  $('.grid .grid-row .grid-cell').on('click',cellClicked);
+  //$('.grid .grid-row .grid-cell').on('click',cellClicked);
   populateGrids();
 });
 
@@ -16,7 +16,6 @@ addProductDetailsToCell = function(rowCount, cellCount, oData){
 addProductDetailsToCells = function (aData) {
   for (var i = 0; i < aData.length; i++) {
     var output = Mustache.to_html(sMustacheTemplate, aData[i]);
-    $(".grid .grid-row .grid-cell").eq(i).attr("data-content","content");
     $(".grid .grid-row .grid-cell").eq(i).html(output);
   }
 
@@ -27,14 +26,18 @@ getMustacheTemplateDom = function(oData){
 }
 
 cellClicked = function(oEvent){
-  var oTarget = oEvent.target;
-  if(oTarget.className == "grid-cell"){
-    showDialog($(oTarget), oTarget.getAttribute("data-content"));
-  }
+  var oTarget = oEvent.currentTarget;
+    var $productTemplate = $(oTarget).find('.product_template');
+    showDialog(oTarget, $productTemplate.attr('data-content'));
 }
 
 function showDialog ( oTarget, dataContentt) {
   $('#dialog').html(dataContentt);
-  $('#dialog').dialog({closeText: "",
-                      position : { of : oTarget}});
+  $('#dialog').dialog({
+
+    close: function( event, ui ) {
+      computeUserDataRelevanceAndUpdateGrids(oTarget);
+    }
+
+  });
 }
