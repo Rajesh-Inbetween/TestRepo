@@ -28,9 +28,11 @@ getMustacheTemplateDom = function(oData){
 
 cellClicked = function(oEvent){
   var oTarget = oEvent.currentTarget;
+  $('.grid-cell').removeClass('cellSelected');
+  $(oTarget).addClass('cellSelected');
   var $productTemplate = $(oTarget).find('.product_template');
   computeUserDataRelevanceAndUpdateGrids(oTarget);
-  showDialog(oTarget, $productTemplate.attr('data-content'));
+  //showDialog(oTarget, $productTemplate.attr('data-content'));
 }
 
 function showDialog ( oTarget, dataContentt) {
