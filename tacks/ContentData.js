@@ -35,7 +35,7 @@ var aContentData = [
       {
         "name": "Philantropy & Responsibility",
         "relevance": 50,
-        "strength":"week"
+        "strength":"weak"
       },
       {
         "name": "Financial Affinity",
@@ -84,7 +84,7 @@ var aContentData = [
       {
         "name": "Philantropy & Responsibility",
         "relevance": -80,
-        "strength":"week"
+        "strength":"weak"
       },
       {
         "name": "Financial Affinity",
@@ -233,7 +233,7 @@ var aContentData = [
       {
         "name": "Philantropy & Responsibility",
         "relevance": -20,
-        "strength":"week"
+        "strength":"weak"
       },
       {
         "name": "Financial Affinity",
@@ -272,7 +272,7 @@ var aContentData = [
       {
         "name": "Socioeconomics",
         "relevance": 50,
-        "strength":"week"
+        "strength":"weak"
       },
       {
         "name": "Cultural Type",
@@ -282,7 +282,7 @@ var aContentData = [
       {
         "name": "Philantropy & Responsibility",
         "relevance": -100,
-        "strength":"week"
+        "strength":"weak"
       },
       {
         "name": "Financial Affinity",
@@ -322,7 +322,7 @@ var aContentData = [
       {
         "name": "Socioeconomics",
         "relevance": 30,
-        "strength":"week"
+        "strength":"weak"
       },
       {
         "name": "Cultural Type",
@@ -361,7 +361,7 @@ var aContentData = [
       {
         "name": "Digital Affinity",
         "relevance": 10,
-        "strength":"week"
+        "strength":"weak"
       },
       {
         "name": "Family Status",
@@ -386,7 +386,7 @@ var aContentData = [
       {
         "name": "Financial Affinity",
         "relevance": 50,
-        "strength":"week"
+        "strength":"weak"
       }
     ],
     "image": "../images/prd-tea-pflegekonto.jpg",
@@ -405,7 +405,7 @@ var aContentData = [
       {
         "name": "Internationality",
         "relevance": -50,
-        "strength":"week"
+        "strength":"weak"
       },
       {
         "name": "Digital Affinity",
@@ -508,7 +508,7 @@ var aContentData = [
       {
         "name": "Digital Affinity",
         "relevance": 60,
-        "strength":"week"
+        "strength":"weak"
       },
       {
         "name": "Family Status",
@@ -572,7 +572,7 @@ var aContentData = [
       {
         "name": "Cultural Type",
         "relevance": -30,
-        "strength":"week"
+        "strength":"weak"
       },
       {
         "name": "Philantropy & Responsibility",
@@ -601,7 +601,7 @@ var aContentData = [
       {
         "name": "Internationality",
         "relevance": 60,
-        "strength":"week"
+        "strength":"weak"
       },
       {
         "name": "Digital Affinity",
@@ -611,7 +611,7 @@ var aContentData = [
       {
         "name": "Family Status",
         "relevance": 50,
-        "strength":"week"
+        "strength":"weak"
       },
       {
         "name": "Socioeconomics",
@@ -650,7 +650,7 @@ var aContentData = [
       {
         "name": "Internationality",
         "relevance": -60,
-        "strength":"week"
+        "strength":"weak"
       },
       {
         "name": "Digital Affinity",
@@ -680,7 +680,7 @@ var aContentData = [
       {
         "name": "Financial Affinity",
         "relevance": 70,
-        "strength":"week"
+        "strength":"weak"
       }
     ],
     "image": "../images/prd-tea-optimobaudarlehen.jpg",
@@ -724,7 +724,7 @@ var aContentData = [
       {
         "name": "Philantropy & Responsibility",
         "relevance": -40,
-        "strength":"week"
+        "strength":"weak"
       },
       {
         "name": "Financial Affinity",
@@ -753,7 +753,7 @@ var aContentData = [
       {
         "name": "Digital Affinity",
         "relevance": 71,
-        "strength":"week"
+        "strength":"weak"
       },
       {
         "name": "Family Status",
@@ -778,7 +778,7 @@ var aContentData = [
       {
         "name": "Financial Affinity",
         "relevance": 70,
-        "strength":"week"
+        "strength":"weak"
       }
     ],
     "image": "../images/prd-tea_wohndarlehen.jpg",
@@ -807,7 +807,7 @@ var aContentData = [
       {
         "name": "Family Status",
         "relevance": 55,
-        "strength":"week"
+        "strength":"weak"
       },
       {
         "name": "Socioeconomics",
@@ -969,7 +969,7 @@ var aContentData = [
       {
         "name": "Philantropy & Responsibility",
         "relevance": -40,
-        "strength": "week"
+        "strength": "weak"
       },
       {
         "name": "Financial Affinity",
@@ -998,7 +998,7 @@ var aContentData = [
       {
         "name": "Digital Affinity",
         "relevance": -50,
-        "strength": "week"
+        "strength": "weak"
       },
       {
         "name": "Family Status",
@@ -1067,7 +1067,7 @@ var aContentData = [
       {
         "name": "Philantropy & Responsibility",
         "relevance": -40,
-        "strength": "week"
+        "strength": "weak"
       },
       {
         "name": "Financial Affinity",
@@ -1116,7 +1116,7 @@ var aContentData = [
       {
         "name": "Philantropy & Responsibility",
         "relevance": -40,
-        "strength": "week"
+        "strength": "weak"
       },
       {
         "name": "Financial Affinity",
