@@ -2,7 +2,9 @@ var aContentData = [
   {
     "label": "German Investment Bank Finder",
     "id": "1",
-    "category": "Investments",
+    "category": [
+      {"name":"Investments","relevance":100}
+    ],
     "content": "The monthly selection of our experts",
     "Target Group": [
       {
@@ -33,7 +35,7 @@ var aContentData = [
       {
         "name": "Philantropy & Responsibility",
         "relevance": 50,
-        "strength":"weak"
+        "strength":"week"
       },
       {
         "name": "Financial Affinity",
@@ -49,7 +51,9 @@ var aContentData = [
   {
     "label": "German Bank Interest Invest",
     "id": "2",
-    "category": "Investments",
+    "category": [
+      {"name":"Investments","relevance":100}
+    ],
     "content": "Investment opportunities in the low interest rates",
     "Target Group": [
       {
@@ -80,7 +84,7 @@ var aContentData = [
       {
         "name": "Philantropy & Responsibility",
         "relevance": -80,
-        "strength":"weak"
+        "strength":"week"
       },
       {
         "name": "Financial Affinity",
@@ -97,7 +101,9 @@ var aContentData = [
   {
     "label": "Best allocation",
     "id": "3",
-    "category": "Investments",
+    "category": [
+      {"name":"Investments","relevance":100}
+    ],
     "content": "The market assessment of Deutsche Bank",
     "Target Group": [
       {
@@ -145,13 +151,15 @@ var aContentData = [
   {
     "label": "5 star AnsparRente",
     "id": "4",
-    "category": "Provision",
+    "category": [
+      {"name":"Provision","relevance":100}
+    ],
     "content": "Five, the gild your future guaranteed",
     "Target Group": [
       {
         "name": "Internationality",
         "relevance": 10,
-        "strength":"weak"
+        "strength":""
       },
       {
         "name": "Digital Affinity",
@@ -176,7 +184,7 @@ var aContentData = [
       {
         "name": "Philantropy & Responsibility",
         "relevance": -20,
-        "strength":"week"
+        "strength":""
       },
       {
         "name": "Financial Affinity",
@@ -191,14 +199,16 @@ var aContentData = [
   },
   {
     "label": "Basic pension premium",
-    "id": "4",
-    "category": "Provision",
+    "id": "5",
+    "category": [
+      {"name":"Provision","relevance":100}
+    ],
     "content": "Best prospects for your future",
     "Target Group": [
       {
         "name": "Internationality",
         "relevance": 10,
-        "strength":"weak"
+        "strength":""
       },
       {
         "name": "Digital Affinity",
@@ -207,18 +217,18 @@ var aContentData = [
       },
       {
         "name": "Family Status",
-        "relevance": 100,
+        "relevance": -100,
         "strength":"absolute"
       },
       {
         "name": "Socioeconomics",
         "relevance": 60,
-        "strength":"strong"
+        "strength":""
       },
       {
         "name": "Cultural Type",
         "relevance": -20,
-        "strength":"indicator"
+        "strength":""
       },
       {
         "name": "Philantropy & Responsibility",
@@ -238,14 +248,16 @@ var aContentData = [
   },
   {
     "label": "Pension fund premium",
-    "id": "5",
-    "category": "Provision",
+    "id": "6",
+    "category": [
+      {"name":"Provision","relevance":100}
+    ],
     "content": "More out - our precautionary principle",
     "Target Group": [
       {
         "name": "Internationality",
-        "relevance": 100,
-        "strength":"absolute"
+        "relevance": 0,
+        "strength":""
       },
       {
         "name": "Digital Affinity",
@@ -254,13 +266,13 @@ var aContentData = [
       },
       {
         "name": "Family Status",
-        "relevance": -30,
-        "strength":"weak"
+        "relevance": 100,
+        "strength":""
       },
       {
         "name": "Socioeconomics",
         "relevance": 50,
-        "strength":"strong"
+        "strength":"week"
       },
       {
         "name": "Cultural Type",
@@ -270,12 +282,12 @@ var aContentData = [
       {
         "name": "Philantropy & Responsibility",
         "relevance": -100,
-        "strength":"weak"
+        "strength":"week"
       },
       {
         "name": "Financial Affinity",
-        "relevance": 90,
-        "strength":"strong"
+        "relevance": 20,
+        "strength":"indicator"
       }
     ],
     "image": "../images/prd-tea-fondsrente_premium.jpg",
@@ -286,8 +298,10 @@ var aContentData = [
   },
   {
     "label": "Occupation hull",
-    "id": "6",
-    "category": "Provision",
+    "id": "7",
+    "category": [
+      {"name":"Provision","relevance":100}
+    ],
     "content": "Security for all cases",
     "Target Group": [
       {
@@ -312,7 +326,7 @@ var aContentData = [
       },
       {
         "name": "Cultural Type",
-        "relevance": 100,
+        "relevance": -100,
         "strength":"absolute"
       },
       {
@@ -333,8 +347,10 @@ var aContentData = [
   },
   {
     "label": "Care Account",
-    "id": "7",
-    "category": "Provision",
+    "id": "8",
+    "category": [
+      {"name":"Provision","relevance":100}
+    ],
     "content": "Insurance for the nursing care amount against",
     "Target Group": [
       {
@@ -345,7 +361,7 @@ var aContentData = [
       {
         "name": "Digital Affinity",
         "relevance": 10,
-        "strength":"weak"
+        "strength":"week"
       },
       {
         "name": "Family Status",
@@ -355,7 +371,7 @@ var aContentData = [
       {
         "name": "Socioeconomics",
         "relevance": 35,
-        "strength":"indicator"
+        "strength":""
       },
       {
         "name": "Cultural Type",
@@ -370,7 +386,7 @@ var aContentData = [
       {
         "name": "Financial Affinity",
         "relevance": 50,
-        "strength":"weak"
+        "strength":"week"
       }
     ],
     "image": "../images/prd-tea-pflegekonto.jpg",
@@ -380,8 +396,10 @@ var aContentData = [
   },
   {
     "label": "FörderRente Premium",
-    "id": "8",
-    "category": "Provision",
+    "id": "9",
+    "category": [
+      {"name":"Provision","relevance":100}
+    ],
     "content": "Get introduced to gild your future",
     "Target Group": [
       {
@@ -427,8 +445,10 @@ var aContentData = [
   },
   {
     "label": "Junior Invest",
-    "id": "9",
-    "category": "Provision",
+    "id": "10",
+    "category": [
+      {"name":"Provision","relevance":100}
+    ],
     "content": "Invest in the future of your children",
     "Target Group": [
       {
@@ -474,8 +494,10 @@ var aContentData = [
   },
   {
     "label": "Private health insurance",
-    "id": "10",
-    "category": "Provision",
+    "id": "11",
+    "category": [
+      {"name":"Provision","relevance":100}
+    ],
     "content": "Benefit from the latest treatment methods",
     "Target Group": [
       {
@@ -521,8 +543,10 @@ var aContentData = [
   },
   {
     "label": "Car insurance",
-    "id": "11",
-    "category": "Provision",
+    "id": "12",
+    "category": [
+      {"name":"Provision","relevance":100}
+    ],
     "content": "Security for all cases",
     "Target Group": [
       {
@@ -568,8 +592,10 @@ var aContentData = [
   },
   {
     "label": "Mortgage",
-    "id": "12",
-    "category": "Real Estate",
+    "id": "13",
+    "category": [
+      {"name":"Real Estate","relevance":100}
+    ],
     "content": "Safe and flexible to Dream Property",
     "Target Group": [
       {
@@ -615,8 +641,10 @@ var aContentData = [
   },
   {
     "label": "Family Mortgages",
-    "id": "13",
-    "category": "Real Estate",
+    "id": "14",
+    "category": [
+      {"name":"Real Estate","relevance":100}
+    ],
     "content": "More space for your family. Long-term and flexible financing.",
     "Target Group": [
       {
@@ -662,8 +690,10 @@ var aContentData = [
   },
   {
     "label": "Premium Building Societies",
-    "id": "14",
-    "category": "Real Estate",
+    "id": "15",
+    "category": [
+      {"name":"Real Estate","relevance":100}
+    ],
     "content": "Save with attractive bonuses for wishes",
     "Target Group": [
       {
@@ -709,8 +739,10 @@ var aContentData = [
   },
   {
     "label": "Housing loan German bank",
-    "id": "15",
-    "category": "Real Estate",
+    "id": "16",
+    "category": [
+      {"name":"Real Estate","relevance":100}
+    ],
     "content": "Finance now cheap and flexible",
     "Target Group": [
       {
@@ -756,8 +788,10 @@ var aContentData = [
   },
   {
     "label": "BaufiSchutz",
-    "id": "16",
-    "category": "Real Estate",
+    "id": "17",
+    "category": [
+      {"name":"Real Estate","relevance":100}
+    ],
     "content": "Protecting your mortgage",
     "Target Group": [
       {
@@ -803,8 +837,10 @@ var aContentData = [
   },
   {
     "label": "GeldmarktSparen",
-    "id": "17",
-    "category": "Save",
+    "id": "18",
+    "category": [
+      {"name":"Save","relevance":100}
+    ],
     "content": "Park money & stay mobile",
     "Target Group": [
       {
@@ -850,8 +886,10 @@ var aContentData = [
   },
   {
     "label": "TopZinsSparen",
-    "id": "18",
-    "category": "Save",
+    "id": "19",
+    "category": [
+      {"name":"Save","relevance":100}
+    ],
     "content": "Save step by step - with Topzinsen",
     "Target Group": [
       {
@@ -897,8 +935,10 @@ var aContentData = [
   },
   {
     "label": "SparCard",
-    "id": "19",
-    "category": "Save",
+    "id": "20",
+    "category": [
+      {"name":"Save","relevance":100}
+    ],
     "content": "Reserve your money on the go",
     "Target Group": [
       {
@@ -944,8 +984,10 @@ var aContentData = [
   },
   {
     "label": "Telephone banking",
-    "id": "20",
-    "category": "Account & Map",
+    "id": "21",
+    "category": [
+      {"name":"Account & Map","relevance":100}
+    ],
     "content": "Do their banking round the clock on the phone",
     "Target Group": [
       {
@@ -991,8 +1033,10 @@ var aContentData = [
   },
   {
     "label": "Asset account",
-    "id": "21",
-    "category": "Account & Map",
+    "id": "22",
+    "category": [
+      {"name":"Account & Map","relevance":100}
+    ],
     "content": "The basic account",
     "Target Group": [
       {
@@ -1038,8 +1082,10 @@ var aContentData = [
   },
   {
     "label": "Online Banking",
-    "id": "",
-    "category": "Account & Map",
+    "id": "23",
+    "category": [
+      {"name":"Account & Map","relevance":100}
+    ],
     "content": "Your new online banking and brokerage",
     "Target Group": [
       {
