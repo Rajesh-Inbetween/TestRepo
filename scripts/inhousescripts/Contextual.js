@@ -76,11 +76,11 @@ function populateGrids(){
       var oContent = getContentWithTargetGroup(aContent, sTargetGroupType);
       if (oContent) {
         oRuleData.targetGroup[sTargetGroupType]--;
-        var aRegions = oContent["Region"];
-        for (var iRegionIndex = 0; iRegionIndex < aRegions.length; iRegionIndex++) {
-          var sRegionName = aRegions[iRegionIndex].name;
-          if (oRuleData.region[sRegionName] > 0) {
-            oRuleData.region[sRegionName]--;
+        var aCategories = oContent["category"];
+        for (var iCategoryIndex = 0; iCategoryIndex < aCategories.length; iCategoryIndex++){
+          var sCategory = aCategories[iCategoryIndex].name;
+          if (oRuleData.category[sCategory] > 0) {
+            oRuleData.category[sCategory]--;
           }
         }
         aContentToUse.push(oContent);
@@ -92,16 +92,16 @@ function populateGrids(){
       }
     }
   }
-  region:
-  for(sRegionType in oRuleData.region){
-    while(oRuleData.region[sRegionType] > 0){
-      console.log(sRegionType);
-      var oContent = getContentForRegion(aContent, sRegionType);
+  category:
+  for(sCategory in oRuleData.category){
+    while(oRuleData.category[sCategory] > 0){
+      console.log(sCategory);
+      var oContent = getContentForRegion(aContent, sCategory);
       if (oContent) {
-        oRuleData.region[sRegionType]--;
+        oRuleData.category[sCategory]--;
         aContentToUse.push(oContent);
         if(aContentToUse.length >= iGridSize){
-          break region;
+          break category;
         }
       } else{
         break;
@@ -234,13 +234,13 @@ function getContentWithTargetGroup(aClonedContent, sTargetGroup){
   return false;
 }
 
-function getContentForRegion(aClonedContent, sRegion){
+function getContentForRegion(aClonedContent, sCategoryName){
   for(var iContentIndex = 0 ; iContentIndex < aClonedContent.length ; iContentIndex++){
     var oContent = aClonedContent[iContentIndex];
-    var aContentRegions = oContent["Region"];
-    for(var iTargetGroupIndex=0 ; iTargetGroupIndex < aContentRegions.length ; iTargetGroupIndex++){
-      var oRegion = aContentRegions[iTargetGroupIndex];
-      if(oRegion.name == sRegion && oRegion.relevance > 0){
+    var aContentCategories = oContent["category"];
+    for(var iCategoryIndex=0 ; iCategoryIndex < aContentCategories.length ; iCategoryIndex++){
+      var oCategoryForContent = aContentCategories[iCategoryIndex];
+      if(oCategoryForContent.name == sCategoryName && oCategoryForContent.relevance > 0){
         aClonedContent.splice(iContentIndex,1);
         return oContent;
       }

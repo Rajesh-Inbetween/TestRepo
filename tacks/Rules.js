@@ -1,16 +1,17 @@
 var oRules = {
   "targetGroup":{
-    "Financial Affinity":2,
+    "Financial Affinity":1,
     "Internationality":0,
     "Digital Affinity":0,
     "Socioeconomic Group":0,
-    "Family Status":0,
+    "Family Status":1,
     "Cultural Type":0
   },
-  "region":{
-    "North":0,
-    "South":0,
-    "East":0,
-    "West":1
+  "category":{
+    "Investments": 0,
+    "Provision": 1,
+    "Real Estate": 0,
+    "Save": 0,
+    "Account & Map": 0
   }
 };
