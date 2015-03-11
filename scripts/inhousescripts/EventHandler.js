@@ -36,6 +36,7 @@ function computeUserDataRelevanceAndUpdateGrids(oCell){
   var $contentTemplate = $gridCell.find('.product_template');
   var iContentId = $contentTemplate.attr('data-id');
   var oContent = getContentById(iContentId);
+  sessionData.viewedContentIds.push(oContent.id);
   setUserRelevance(oContent);
   var aClonedContents = $.extend(true,[],aContentData);
   prioritizeContent(aClonedContents);

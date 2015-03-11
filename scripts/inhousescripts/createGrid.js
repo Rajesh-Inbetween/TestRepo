@@ -5,7 +5,6 @@ $(document).ready(function () {
   //$('.grid .grid-row .grid-cell').on('click',cellClicked);
   var aClonedContents = $.extend(true,[],aContentData);
   prioritizeContent(aClonedContents);
-  console.log(aClonedContents);
   populateGrids(aClonedContents);
   refreshUserData();
 });

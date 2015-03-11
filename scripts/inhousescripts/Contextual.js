@@ -93,7 +93,6 @@ function populateGrids(aContents){
   category:
   for(sCategory in oRuleData.category){
     while(oRuleData.category[sCategory] > 0){
-      console.log(sCategory);
       var oContent = getContentForRegion(aContents, sCategory);
       if (oContent) {
         oRuleData.category[sCategory]--;
@@ -106,10 +105,8 @@ function populateGrids(aContents){
       }
     }
   }
-  var iContentIndex = aContents.length - 1;
-  while(aContentToUse.length < iGridSize && iContentIndex >= 0){
+  for(var iContentIndex = aContents.length - 1; aContentToUse.length < iGridSize && iContentIndex >= 0 ; iContentIndex--){
     aContentToUse.push(aContents[iContentIndex]);
-    iContentIndex--;
   }
   addProductDetailsToCells(aContentToUse);
 }
