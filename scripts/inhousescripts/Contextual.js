@@ -151,9 +151,11 @@ function addContentAccordingToUserRelevance (sTargetGroupName, sScaleCount, aClo
     default :
       iLoopLength = 0;
   }
+  var oUserData = sessionData.userData;
 
   for (var iCount = 0; iCount < iLoopLength; iCount++) {
-    var oContent = getContentWithTargetGroup(aClonedContent, sTargetGroupName);
+    var oContent = getContentForUserTargetGroup(aClonedContent, sTargetGroupName, oUserData[sTargetGroupName].relevance);
+    //var oContent = getContentWithTargetGroup(aClonedContent, sTargetGroupName);
     if (oContent) {
       aContentToUse.push(oContent);
       console.log(oContent.label);
@@ -161,39 +163,27 @@ function addContentAccordingToUserRelevance (sTargetGroupName, sScaleCount, aClo
       break;
     }
   }
-  /*if (sScaleCount == RELEVANCE_ALL) {
-    var oContent;
-    do {
-      oContent = getContentWithTargetGroup(aClonedContent, sTargetGroupName);
-      if (oContent) {
-        aContentToUse.push(oContent);
-      }
-    } while (oContent);
-  } else if (sScaleCount == RELEVANCE_ONE) {
-    var oContent = getContentWithTargetGroup(aClonedContent, sTargetGroupName);
-    if (oContent) {
-      aContentToUse.push(oContent);
-    }
-  } else if (sScaleCount == RELEVANCE_TWO) {
-    for (var iCount = 0; iCount < 2; iCount++) {
-      var oContent = getContentWithTargetGroup(aClonedContent, sTargetGroupName);
-      if (oContent) {
-        aContentToUse.push(oContent);
-      } else {
-        break;
-      }
-    }
-  } else if (sScaleCount == RELEVANCE_THREE) {
-    for (var iCount = 0; iCount < 3; iCount++) {
-      var oContent = getContentWithTargetGroup(aClonedContent, sTargetGroupName);
-      if (oContent) {
-        aContentToUse.push(oContent);
-      } else {
-        break;
-      }
-    }
-  }*/
 }
+
+function getContentForUserTargetGroup(aClonedContent, sTargetGroup, iTargetGroupRelevance){
+  for(var iContentIndex = 0 ; iContentIndex < aClonedContent.length ; iContentIndex++){
+    var oContent = aClonedContent[iContentIndex];
+    var aContentTargetGroups = oContent["Target Group"];
+    for(var iTargetGroupIndex=0 ; iTargetGroupIndex < aContentTargetGroups.length ; iTargetGroupIndex++){
+      var oTargetGroup = aContentTargetGroups[iTargetGroupIndex];
+      var iRelevanceDifference = iTargetGroupRelevance - oTargetGroup.relevance;
+      var bIsBothNegative = iTargetGroupRelevance < 0 && oTargetGroup.relevance < 0;
+      var bIsBothPositive = iTargetGroupRelevance > 0 && oTargetGroup.relevance > 0;
+      if(oTargetGroup.name == sTargetGroup &&
+          ((bIsBothNegative || bIsBothPositive) && iRelevanceDifference > -10 && iRelevanceDifference < 10)){
+        aClonedContent.splice(iContentIndex,1);
+        return oContent;
+      }
+    }
+  }
+  return false;
+}
+
 
 function getScaleForRelevance (fRelevance) {
   if (fRelevance == 100) {
