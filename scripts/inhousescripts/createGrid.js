@@ -8,7 +8,7 @@ $(document).ready(function () {
 });
 
 addProductDetailsToCell = function(rowCount, cellCount, oData){
-  var $row = $(".grid .grid-row ").eq(rowCount);
+  var $row = $("#content-grid.grid .grid-row ").eq(rowCount);
   var $column = $row.find('.grid-cell').eq(cellCount);
   var output = Mustache.to_html(sMustacheTemplate, oData);
   $column.html(output);
@@ -17,7 +17,7 @@ addProductDetailsToCell = function(rowCount, cellCount, oData){
 addProductDetailsToCells = function (aData) {
   for (var i = 0; i < aData.length; i++) {
     var output = Mustache.to_html(sMustacheTemplate, aData[i]);
-    $(".grid .grid-row .grid-cell").eq(i).html(output);
+    $("#content-grid.grid .grid-row .grid-cell").eq(i).html(output);
   }
 
 };
