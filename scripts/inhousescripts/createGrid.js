@@ -36,6 +36,7 @@ function showDialog ( oTarget, dataContentt) {
   $('#dialog').html(dataContentt);
   $('#dialog').dialog({
 
+    title:"Content",
     close: function( event, ui ) {
       computeUserDataRelevanceAndUpdateGrids(oTarget);
     }

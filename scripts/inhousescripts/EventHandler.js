@@ -76,7 +76,7 @@ function updateProductRelevanceTable(oContent){
               break;
           }
         }
-        tableHTML += "<td style='background-color: " + sStrengthColour + "'>" + iTargetGroupRelevance + "%</td>";
+        tableHTML += "<td style='background-color: " + sStrengthColour + "'>" + iTargetGroupRelevance.toFixed(2) + "%</td>";
         break;
       }
     }
@@ -92,8 +92,7 @@ function updateProductRelevanceTable(oContent){
   for( var iTableColumnIndex = 1 ; iTableColumnIndex < tableColumns.length ; iTableColumnIndex++){
     var sTargetGroup = tableColumns[iTableColumnIndex];
     var iUserDataTargetGroupRelevance = oUserData[sTargetGroup].relevance;
-    console.log("<td>" + iUserDataTargetGroupRelevance + "%</td>");
-    tableHTML += "<td>" + iUserDataTargetGroupRelevance + "%</td>";
+    tableHTML += "<td>" + iUserDataTargetGroupRelevance.toFixed(2) + "%</td>";
   }
   tableHTML += "</tr>";
   $('#product-relevance-table tbody').append(tableHTML);
