@@ -6,8 +6,5 @@
 .project
 .springBeans
 .idea
-*.iml
-*.ipr
-*.iws
-src/dynamicJava
-src/generatedClasses
+*.zip
+*.rar

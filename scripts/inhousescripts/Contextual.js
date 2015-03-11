@@ -42,6 +42,11 @@ function computeUserRelevance(productDataTargetGroup, userTargetGroup){
       break;
   }
   //userTargetGroup.relevance = computedRelevance;
+  if (computedRelevance > 100) {
+    computedRelevance = 100;
+  } else if (computedRelevance < -100) {
+    computedRelevance = -100;
+  }
   return computedRelevance;
 }
 
