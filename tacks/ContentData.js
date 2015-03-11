@@ -39,7 +39,7 @@ var aContentData = [
         "strength":"strong"
       }
     ],
-    "image": "../images/Product_1.png",
+    "image": "../images/Product_1.jpg",
     "Region":[
       {"name":"North","relevance":100}
     ]
@@ -84,7 +84,7 @@ var aContentData = [
         "strength":"strong"
       }
     ],
-    "image": "../images/Product_2.png",
+    "image": "../images/Product_2.jpg",
     "Region":[
       {"name":"North","relevance":100},
       {"name":"East","relevance":100}
@@ -312,7 +312,7 @@ var aContentData = [
         "strength":"weak"
       }
     ],
-    "image": "../images/Product_6.jpg",
+    "image": "../images/Product_7.jpg",
     "Region":[
       {"name":"East","relevance":100}
     ]
@@ -357,7 +357,7 @@ var aContentData = [
         "strength":"weak"
       }
     ],
-    "image": "../images/Product_6.jpg",
+    "image": "../images/Product_8.jpg",
     "Region":[
       {"name":"East","relevance":100}
     ]

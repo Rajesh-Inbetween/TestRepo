@@ -5,15 +5,6 @@ $(document).ready(function () {
   populateGrids();
 });
 
-var sMustacheTemplate =
-    "<div class='product_template' data-id='{{id}}'>" +
-      "<div class='product_template_label'>{{label}}</div>" +
-      "<div class='product_template_description'>{{description}}</div> " +
-      "<div class='product_template_image'>" +
-        "<img src = {{{image}}} alt = 'image' height='200px' width='200px'/>" +
-      "</div>" +
-    "</div>";
-
 addProductDetailsToCell = function(rowCount, cellCount, oData){
   var $row = $(".grid .grid-row ").eq(rowCount);
   var $column = $row.find('.grid-cell').eq(cellCount);
