@@ -1,6 +1,6 @@
 
 .grid {
-    display: table;
+    display: inline-table;
     background-color: black;
 }
 
@@ -65,6 +65,16 @@ body {
     margin-top: 40%;
 }
 
-#content-grid {
-    margin: 5% 0 0 20%;
+#user-data{
+    display: inline-block;
+    padding: 16px;
+    background-color: rgb(175, 170, 170);
+    float: right;
+    border: 1px solid gray;
+    /*min-width:17%;*/
+    /*min-height:23%;*/
+}
+
+#label-user-data{
+    text-align: center;
 }

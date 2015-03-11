@@ -3,6 +3,15 @@ function gridCellClicked (oEvent) {
   cellClicked(oEvent);
 }
 
+function refreshUserData () {
+  var sDisplayUserString = "";
+  for (sKey in sessionData.userData) {
+    sDisplayUserString += sKey + " : " + sessionData.userData[sKey].relevance + "<br>";
+    console.log(sKey + " : " + sessionData.userData[sKey].relevance)
+  }
+  $('#display-user-data').html(sDisplayUserString);
+}
+
 function computeUserDataRelevanceAndUpdateGrids(oCell){
   var $gridCell = $(oCell);
   var $contentTemplate = $gridCell.find('.product_template');
@@ -10,5 +19,5 @@ function computeUserDataRelevanceAndUpdateGrids(oCell){
   var oContent = getContentById(iContentId);
   setUserRelevance(oContent);
 
-  for (sKey in sessionData.userData){console.log(sKey + " : " + sessionData.userData[sKey].relevance)}
+  refreshUserData();
 }

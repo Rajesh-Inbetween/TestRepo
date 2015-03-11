@@ -4,6 +4,7 @@ $(document).ready(function () {
   //addProductDetailsToCell(0,1,aContentData);
   //$('.grid .grid-row .grid-cell').on('click',cellClicked);
   populateGrids();
+  refreshUserData();
 });
 
 addProductDetailsToCell = function(rowCount, cellCount, oData){
