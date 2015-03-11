@@ -7,7 +7,7 @@ if (sessionStorage.userData) {
 }
 
 sessionData = {
-  gridSize:[2,3],
+  gridSize: 6,
   userData: oUserData
 };
 

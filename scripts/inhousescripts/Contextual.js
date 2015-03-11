@@ -66,7 +66,7 @@ function populateGrids(){
   var aContent = $.extend(true, [], aContentData);
   var oUserData = $.extend(true, {}, sessionData.userData);
   var oRuleData = $.extend(true,{},oRules);
-  var iGridSize = sessionData.gridSize[0]*sessionData.gridSize[1];
+  var iGridSize = sessionData.gridSize;
   var aContentToUse = [];
 
   //Applying content as per rule set.

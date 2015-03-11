@@ -51,10 +51,13 @@ body {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     color: white;
+    -webkit-transition : all 0.3s;
+    -moz-transition : all 0.3s;
+    transition : all 0.3s;
 }
 
 .product_template:hover {
-    opacity: 0.7;
+    opacity: 0.5;
     cursor: pointer;
 }
 
