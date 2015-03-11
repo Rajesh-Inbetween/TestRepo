@@ -395,7 +395,7 @@ var aContentData = [
     ]
   },
   {
-    "label": "FörderRente Premium",
+    "label": "ForderRente Premium",
     "id": "9",
     "category": [
       {"name":"Provision","relevance":100}
