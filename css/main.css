@@ -51,15 +51,37 @@ body {
 }
 
 #user-data{
-    display: inline-block;
     padding: 16px;
     background-color: rgb(175, 170, 170);
-    float: right;
     border: 1px solid gray;
-    /*min-width:17%;*/
-    /*min-height:23%;*/
 }
 
 #label-user-data{
     text-align: center;
+}
+
+.user-data-cell{
+    padding-right: 21px;
+    font-size: 12px;
+    font-family: monospace;
+}
+
+#relevance-data{
+    display: inline-block;
+    float:right;
+}
+
+#product-relevance-history{
+    width:200px;
+    height:100px;
+    border: 1px solid grey;
+}
+
+#product-relevance-table {
+    font-size: 11px;
+}
+
+#product-relevance-table th, #product-relevance-table td{
+    border : 1px solid grey;
+    max-width: 84px;
 }
