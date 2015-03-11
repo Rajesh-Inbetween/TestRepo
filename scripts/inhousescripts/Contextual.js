@@ -12,8 +12,6 @@ function setUserRelevance (oContent) {
     var iUpdatedUserDataRelevance = computeUserRelevance(oContentTargetGroup, oUserData);
     oUserData.relevance = iUpdatedUserDataRelevance;
   }
-
-  populateGrids();
 }
 
 function computeUserRelevance(productDataTargetGroup, userTargetGroup){
@@ -61,9 +59,9 @@ function getContentById(iContentid){
   return false;
 }
 
-function populateGrids(){
+function populateGrids(aContents){
 
-  var aContent = $.extend(true, [], aContentData);
+  //var aContent = $.extend(true, [], aContentData);
   var oUserData = $.extend(true, {}, sessionData.userData);
   var oRuleData = $.extend(true,{},oRules);
   var iGridSize = sessionData.gridSize;
@@ -73,7 +71,7 @@ function populateGrids(){
   targetGroup:
   for(sTargetGroupType in oRuleData.targetGroup){
     while (oRuleData.targetGroup[sTargetGroupType] > 0) {
-      var oContent = getContentWithTargetGroup(aContent, sTargetGroupType);
+      var oContent = getContentWithTargetGroup(aContents, sTargetGroupType);
       if (oContent) {
         oRuleData.targetGroup[sTargetGroupType]--;
         var aCategories = oContent["category"];
@@ -96,7 +94,7 @@ function populateGrids(){
   for(sCategory in oRuleData.category){
     while(oRuleData.category[sCategory] > 0){
       console.log(sCategory);
-      var oContent = getContentForRegion(aContent, sCategory);
+      var oContent = getContentForRegion(aContents, sCategory);
       if (oContent) {
         oRuleData.category[sCategory]--;
         aContentToUse.push(oContent);
@@ -108,28 +106,16 @@ function populateGrids(){
       }
     }
   }
-
-  // Applying content as per User Data.
-  for (var sTargetGroupName in oUserData) {
-    var sScaleCount = getScaleForRelevance(oUserData[sTargetGroupName].relevance);
-    addContentAccordingToUserRelevance(sTargetGroupName, sScaleCount, aContent, aContentToUse);
+  var iContentIndex = aContents.length - 1;
+  while(aContentToUse.length < iGridSize && iContentIndex >= 0){
+    aContentToUse.push(aContents[iContentIndex]);
+    iContentIndex--;
   }
-
-  var iContentIndex = 0;
-  while(aContentToUse.length < iGridSize && iContentIndex < aContent.length){
-    aContentToUse.push(aContent[iContentIndex]);
-    iContentIndex++;
-  }
-  //var $aGridCells = $('#content-grid').find('.grid-cell');
-  //for(var iGridCellIndex = 0 ; iGridCellIndex < $aGridCells.length ; iGridCellIndex++){
-  //  var oTemplate = getMustacheTemplateDom(aContentToUse[iGridCellIndex]);
-  //  $aGridCells.eq(iGridCellIndex).html(oTemplate);
-  //}
   addProductDetailsToCells(aContentToUse);
 }
 
-function addContentAccordingToUserRelevance (sTargetGroupName, sScaleCount, aClonedContent, aContentToUse) {
-  var iLoopLength;
+function addContentAccordingToUserRelevance (aClonedContent, aContentToUse) {
+  /*var iLoopLength;
   console.log(sTargetGroupName + " : " + sScaleCount);
   switch(sScaleCount){
     case RELEVANCE_ALL:
@@ -150,38 +136,44 @@ function addContentAccordingToUserRelevance (sTargetGroupName, sScaleCount, aClo
 
     default :
       iLoopLength = 0;
-  }
-  var oUserData = sessionData.userData;
+  }*/
 
-  for (var iCount = 0; iCount < iLoopLength; iCount++) {
-    var oContent = getContentForUserTargetGroup(aClonedContent, sTargetGroupName, oUserData[sTargetGroupName].relevance);
+  /*for (var iCount = 0; iCount < iLoopLength; iCount++) {*/
+    var aContents = getContentForUserTargetGroup(aClonedContent);
     //var oContent = getContentWithTargetGroup(aClonedContent, sTargetGroupName);
-    if (oContent) {
-      aContentToUse.push(oContent);
-      console.log(oContent.label);
-    } else {
-      break;
+    if (aContents.length) {
+      aContentToUse.push.apply(aContentToUse, aContents);
     }
-  }
 }
 
-function getContentForUserTargetGroup(aClonedContent, sTargetGroup, iTargetGroupRelevance){
-  for(var iContentIndex = 0 ; iContentIndex < aClonedContent.length ; iContentIndex++){
+function getContentForUserTargetGroup(aClonedContent){
+  var aContentToBePushed = [];
+  var oUserData = sessionData.userData;
+
+  for(var iContentIndex = aClonedContent.length - 1 ; iContentIndex >= 0 ; iContentIndex--){
     var oContent = aClonedContent[iContentIndex];
     var aContentTargetGroups = oContent["Target Group"];
+    var bIsContentRelevant = true;
     for(var iTargetGroupIndex=0 ; iTargetGroupIndex < aContentTargetGroups.length ; iTargetGroupIndex++){
-      var oTargetGroup = aContentTargetGroups[iTargetGroupIndex];
-      var iRelevanceDifference = iTargetGroupRelevance - oTargetGroup.relevance;
-      var bIsBothNegative = iTargetGroupRelevance < 0 && oTargetGroup.relevance < 0;
-      var bIsBothPositive = iTargetGroupRelevance > 0 && oTargetGroup.relevance > 0;
-      if(oTargetGroup.name == sTargetGroup &&
-          ((bIsBothNegative || bIsBothPositive) && iRelevanceDifference > -10 && iRelevanceDifference < 10)){
-        aClonedContent.splice(iContentIndex,1);
-        return oContent;
+      var oContentTargetGroup = aContentTargetGroups[iTargetGroupIndex];
+      var oUserTargetGroup = oUserData[oContentTargetGroup.name];
+      var iRelevanceDifference = oUserTargetGroup.relevance - oContentTargetGroup.relevance;
+      var bIsBothNegative = oUserTargetGroup.relevance < 0 && oContentTargetGroup.relevance < 0;
+      var bIsBothPositive = oUserTargetGroup.relevance >= 0 && oContentTargetGroup.relevance >= 0;
+      if((bIsBothNegative || bIsBothPositive) && iRelevanceDifference > -30 && iRelevanceDifference < 30){
+        continue;
+      } else {
+        bIsContentRelevant = false;
+        break;
       }
     }
+    if(bIsContentRelevant){
+      aContentToBePushed.push(oContent);
+      aClonedContent.splice(iContentIndex,1);
+    }
   }
-  return false;
+  console.log(aContentToBePushed);
+  return aContentToBePushed;
 }
 
 
@@ -210,7 +202,7 @@ function getScaleForRelevance (fRelevance) {
  * @param sTargetGroup
  */
 function getContentWithTargetGroup(aClonedContent, sTargetGroup){
-  for(var iContentIndex = 0 ; iContentIndex < aClonedContent.length ; iContentIndex++){
+  for(var iContentIndex = aClonedContent.length - 1 ; iContentIndex >= 0 ; iContentIndex--){
     var oContent = aClonedContent[iContentIndex];
     var aContentTargetGroups = oContent["Target Group"];
     for(var iTargetGroupIndex=0 ; iTargetGroupIndex < aContentTargetGroups.length ; iTargetGroupIndex++){
@@ -225,7 +217,7 @@ function getContentWithTargetGroup(aClonedContent, sTargetGroup){
 }
 
 function getContentForRegion(aClonedContent, sCategoryName){
-  for(var iContentIndex = 0 ; iContentIndex < aClonedContent.length ; iContentIndex++){
+  for(var iContentIndex = aClonedContent.length - 1 ; iContentIndex >= 0 ; iContentIndex--){
     var oContent = aClonedContent[iContentIndex];
     var aContentCategories = oContent["category"];
     for(var iCategoryIndex=0 ; iCategoryIndex < aContentCategories.length ; iCategoryIndex++){
@@ -237,4 +229,41 @@ function getContentForRegion(aClonedContent, sCategoryName){
     }
   }
   return false;
+}
+
+function prioritizeContent (aContents) {
+
+  for (var iContentIndex = 0; iContentIndex < aContents.length; iContentIndex++) {
+    var oUserData = sessionData.userData;
+    var oContent = aContents[iContentIndex];
+    var aContentTargetGroups = oContent["Target Group"];
+    var bIsConflicting = false;
+    //var bIsSameDirection = true;
+    var iDirectionalCount = 0;
+
+    for(var iTargetGroupIndex = 0 ; iTargetGroupIndex < aContentTargetGroups.length ; iTargetGroupIndex++){
+      var oContentTargetGroup = aContentTargetGroups[iTargetGroupIndex];
+      var oUserTargetGroup = oUserData[oContentTargetGroup.name];
+      var bIsBothNegative = oUserTargetGroup.relevance < 0 && oContentTargetGroup.relevance < 0;
+      var bIsBothPositive = oUserTargetGroup.relevance >= 0 && oContentTargetGroup.relevance >= 0;
+      var iRelevanceDifference = oUserTargetGroup.relevance - oContentTargetGroup.relevance;
+      if (Math.abs(iRelevanceDifference) == 200) {
+        bIsConflicting = true;
+      } else if (bIsBothNegative || bIsBothPositive) {
+        iDirectionalCount++;
+      }
+    }
+    if(bIsConflicting){
+      iDirectionalCount = 0;
+    }
+    oContent.directionCount = iDirectionalCount;
+  }
+
+  aContents.sort(function(a,b){
+    return a.directionCount - b.directionCount;
+  });
+
+  //sorting highPriority array of content as per mean of the differences in the relevance.
+
+
 }

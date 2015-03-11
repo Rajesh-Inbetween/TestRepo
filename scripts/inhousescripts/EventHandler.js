@@ -27,7 +27,6 @@ function refreshUserData () {
     "<td class='user-data-cell'>" + userRelevance.toFixed(2) + "%</td>" +
     "<td class='user-data-cell' style='background-color: " + color + ";width:50px'></td>" +
     "</tr>"
-    console.log(sKey + " : " + sessionData.userData[sKey].relevance)
   }
   $('#display-user-data').html(sDisplayUserString);
 }
@@ -38,6 +37,9 @@ function computeUserDataRelevanceAndUpdateGrids(oCell){
   var iContentId = $contentTemplate.attr('data-id');
   var oContent = getContentById(iContentId);
   setUserRelevance(oContent);
+  var aClonedContents = $.extend(true,[],aContentData);
+  prioritizeContent(aClonedContents);
+  populateGrids(aClonedContents);
   updateProductRelevanceTable(oContent);
   refreshUserData();
 }

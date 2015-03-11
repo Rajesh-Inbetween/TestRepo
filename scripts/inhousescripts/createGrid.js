@@ -3,7 +3,10 @@ $(document).ready(function () {
   //addProductDetailsToCells(aContentData);
   //addProductDetailsToCell(0,1,aContentData);
   //$('.grid .grid-row .grid-cell').on('click',cellClicked);
-  populateGrids();
+  var aClonedContents = $.extend(true,[],aContentData);
+  prioritizeContent(aClonedContents);
+  console.log(aClonedContents);
+  populateGrids(aClonedContents);
   refreshUserData();
 });
 
