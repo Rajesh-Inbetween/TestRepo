@@ -10,20 +10,26 @@ $(document).ready(function () {
 addProductDetailsToCell = function(rowCount, cellCount, oData){
   var $row = $("#content-grid.grid .grid-row ").eq(rowCount);
   var $column = $row.find('.grid-cell').eq(cellCount);
-  var output = Mustache.to_html(sMustacheTemplate, oData);
+  var output = Mustache.to_html(sMustacheSmallTemplate, oData);
   $column.html(output);
 }
 
 addProductDetailsToCells = function (aData) {
+  var $gridCells = $("#content-grid.grid .grid-row .grid-cell");
   for (var i = 0; i < aData.length; i++) {
-    var output = Mustache.to_html(sMustacheTemplate, aData[i]);
-    $("#content-grid.grid .grid-row .grid-cell").eq(i).html(output);
+    var output = '';
+    if($gridCells.eq(i).hasClass('large-grid-cell')){
+      output = Mustache.to_html(sMustacheLargeTemplate, aData[i]);
+    } else {
+      output = Mustache.to_html(sMustacheSmallTemplate, aData[i]);
+    }
+    $gridCells.eq(i).html(output);
   }
 
 };
 
 getMustacheTemplateDom = function(oData){
-  return  Mustache.to_html(sMustacheTemplate, oData);
+  return  Mustache.to_html(sMustacheSmallTemplate, oData);
 }
 
 cellClicked = function(oEvent){
@@ -32,6 +38,8 @@ cellClicked = function(oEvent){
   $(oTarget).addClass('cellSelected');
   var $productTemplate = $(oTarget).find('.product_template');
   computeUserDataRelevanceAndUpdateGrids(oTarget);
+  var $maskedCell = $('<div class="maskedCell"></div>');
+  $(oTarget).append($maskedCell);
   //showDialog(oTarget, $productTemplate.attr('data-content'));
 }
 
