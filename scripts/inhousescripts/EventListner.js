@@ -6,4 +6,5 @@ $(document).ready(function () {
 
 function attachEventOnElement () {
   $('body').on('click', '.grid-cell', gridCellClicked);
+  $('#clear-session-data').on('click', clearSessionAndReloadScreen)
 }

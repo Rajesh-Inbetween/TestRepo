@@ -259,3 +259,8 @@ function prioritizeContent (aContents) {
     return a.score - b.score;
   });
 }
+
+function clearSessionAndReloadScreen () {
+  resetSessionData();
+  location.reload();
+}
