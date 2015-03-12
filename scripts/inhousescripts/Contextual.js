@@ -252,14 +252,10 @@ function prioritizeContent (aContents) {
     } else if (Math.abs(iRelevanceMean) <= 50) {
       iContentScore += 1;
     }
-    //console.log(oContent.label  + " : " + iContentScore);
     oContent.score = iContentScore;
   }
 
   aContents.sort(function(a,b){
     return a.score - b.score;
   });
-  /*for(var i = 0 ; i < aContents.length ; i++){
-    console.log(aContents[i].label + " : " + aContents[i].score);
-  }*/
 }
